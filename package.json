@@ -10,6 +10,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-navigation/drawer": "^6.1.8",
     "expo": "~43.0.2",
     "expo-status-bar": "~1.1.0",
     "react": "17.0.1",
