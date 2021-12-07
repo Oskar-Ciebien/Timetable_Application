@@ -1,18 +1,31 @@
-import * as React from "react";
+// React
+import React, { useState } from "react";
+
+// React-Native
+import { View, Switch, StyleSheet, Text } from "react-native";
+
+// Navigation
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, DarkTheme } from "@react-navigation/native";
+
+// Icons
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
+
+// Screens
 import TimetableScreen from "./screens/Timetable";
 import SettingsScreen from "./screens/Settings";
 import AboutUsScreen from "./screens/AboutUs";
+
+// Drawer Items
 import DrawerItems from "./constants/DrawerItems";
 
 const Drawer = createDrawerNavigator();
 
-export default function App() {
+function App() {
   return (
-    <NavigationContainer>
+    //<PaperProvider theme={PaperDarkTheme}>
+    <NavigationContainer /*theme={DarkTheme}*/>
       <Drawer.Navigator
         drawerType="front"
         initialRouteName="Profile"
@@ -72,3 +85,5 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+export default App;
