@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Timetable",
-    "slug": "Timetable",
+    "name": "Timetable_Application",
+    "slug": "Timetable_Application",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
