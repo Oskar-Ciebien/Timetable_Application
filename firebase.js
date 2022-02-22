@@ -44,3 +44,5 @@ createUserWithEmailAndPassword(auth, email, password)
 
 //   // Do other things
 // });
+
+//export default { app, db, auth };

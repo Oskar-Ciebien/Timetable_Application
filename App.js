@@ -8,6 +8,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // Screens
 import LoginScreen from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
+//import { app, db, auth } from "firebase";
 
 const Stack = createNativeStackNavigator();
 

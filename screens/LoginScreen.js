@@ -14,6 +14,7 @@ import { useNavigation } from "@react-navigation/core";
 
 // Firebase
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+//import { app, db, auth } from "firebase";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -22,9 +23,17 @@ const LoginScreen = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    // auth.onAuthStateChanged((user) => {
+    // const auth = getAuth();
+    // onAuthStateChanged(auth, (user) => {
     //   if (user) {
+    //     // User is signed in, see docs for a list of available properties
+    //     // https://firebase.google.com/docs/reference/js/firebase.User
+    //     const uid = user.uid;
     //     navigation.replace("Home");
+    //     // ...
+    //   } else {
+    //     // User is signed out
+    //     // ...
     //   }
     // });
   }, []);

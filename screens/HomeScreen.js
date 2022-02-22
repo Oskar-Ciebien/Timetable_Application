@@ -12,25 +12,19 @@ const HomeScreen = () => {
   // Navigation
   const navigation = useNavigation();
 
-  // Authentication
-  //const auth = getAuth();
-
-  // signOut(auth)
-  //   .then(() => {
-  //     // Log-out
-  //   })
-  //   .catch((error) => {
-  //     // Error encountered
-  //   });
-
   // Log Out
   const logOut = () => {
-    // auth
-    //   .signOut()
-    //   .then(() => {
-    //     navigation.replace("Login");
-    //   })
-    //   .catch((error) => alert(error.message));
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        navigation.replace("Login");
+      })
+      .catch((error) => {
+        // An error happened.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log("Error: ", error.code, error.message);
+      });
   };
   return (
     <View style={styles.container}>
