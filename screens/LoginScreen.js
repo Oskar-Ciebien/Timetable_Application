@@ -12,7 +12,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 
 // Firebase
-// import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import {
   onAuthStateChanged,
@@ -78,7 +77,7 @@ const LoginScreen = () => {
   };
 
   return (
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
+    <KeyboardAvoidingView style={styles.container}>
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Email"
