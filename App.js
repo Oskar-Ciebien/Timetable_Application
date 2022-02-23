@@ -1,3 +1,4 @@
+// Imports
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -25,8 +26,7 @@ function Tabs() {
           bottom: 40,
           left: 30,
           right: 30,
-          elevation: 0,
-          backgroundColor: "grey",
+          backgroundColor: "black",
           borderRadius: 15,
           height: 90,
         },

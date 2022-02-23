@@ -1,3 +1,4 @@
+// Imports
 import {
   KeyboardAvoidingView,
   StyleSheet,
@@ -42,8 +43,6 @@ const LoginScreen = () => {
 
   // Register
   const registerUser = () => {
-    // const auth = getAuth();
-
     createUserWithEmailAndPassword(auth, email, pass)
       .then((userCredential) => {
         // Register in
@@ -61,7 +60,6 @@ const LoginScreen = () => {
 
   // Login
   const loginUser = () => {
-    // const auth = getAuth();
     signInWithEmailAndPassword(auth, email, pass)
       .then((userCredential) => {
         // Logged in
@@ -76,10 +74,8 @@ const LoginScreen = () => {
       });
   };
 
-  // Login
-  const forgotPassword = () => {
-    
-  };
+  // forgotPassword
+  const forgotPassword = () => {};
 
   return (
     <KeyboardAvoidingView style={styles.container}>
