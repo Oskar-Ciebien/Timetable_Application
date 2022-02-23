@@ -2,11 +2,11 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 
 // Navigation
-import { NavigationContainer } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/core";
 
 // Firebase
-import { getAuth, signOut } from "firebase/auth";
+import { auth } from "../firebase";
+import { signOut } from "firebase/auth";
 
 const HomeScreen = () => {
   // Navigation
@@ -28,9 +28,9 @@ const HomeScreen = () => {
   };
   return (
     <View style={styles.container}>
-      {/* <Text>Email: {auth.currentUser?.email}</Text> */}
-      <TouchableOpacity style={styles.button} onPress={logOut}>
-        <Text style={styles.buttonText}>Log Out</Text>
+      <Text>Your Email: {auth.currentUser?.email}</Text>
+      <TouchableOpacity onPress={logOut} style={styles.button}>
+        <Text style={styles.buttonText}>Log out</Text>
       </TouchableOpacity>
     </View>
   );

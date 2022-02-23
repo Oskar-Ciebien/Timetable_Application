@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -18,31 +18,17 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 // Database
-const db = getFirestore(app);
+// const db = getFirestore(app);
 // Authentication
 const auth = getAuth();
 
-createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in
-    const user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-  });
+// Listen for authentication state to change.
+onAuthStateChanged(auth, (user) => {
+  if (user != null) {
+    console.log("We are authenticated now!");
+  }
 
-// const auth = getAuth();
+  // Do other things
+});
 
-// // Listen for authentication state to change.
-// onAuthStateChanged(auth, (user) => {
-//   if (user != null) {
-//     console.log("We are authenticated now!");
-//   }
-
-//   // Do other things
-// });
-
-//export default { app, db, auth };
+export { auth };

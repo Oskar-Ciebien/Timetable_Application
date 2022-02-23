@@ -9,12 +9,16 @@ import {
 import React, { useEffect, useState } from "react";
 
 // Navigation
-import { NavigationContainer } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/core";
 
 // Firebase
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-//import { app, db, auth } from "firebase";
+// import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
+import {
+  onAuthStateChanged,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -23,25 +27,25 @@ const LoginScreen = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    // const auth = getAuth();
-    // onAuthStateChanged(auth, (user) => {
-    //   if (user) {
-    //     // User is signed in, see docs for a list of available properties
-    //     // https://firebase.google.com/docs/reference/js/firebase.User
-    //     const uid = user.uid;
-    //     navigation.replace("Home");
-    //     // ...
-    //   } else {
-    //     // User is signed out
-    //     // ...
-    //   }
-    // });
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const uid = user.uid;
+        navigation.replace("Home");
+        // ...
+      } else {
+        // User is signed out
+        // ...
+      }
+    });
   }, []);
 
   // Register
   const registerUser = () => {
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
+    // const auth = getAuth();
+
+    createUserWithEmailAndPassword(auth, email, pass)
       .then((userCredential) => {
         // Register in
         const user = userCredential.user;
@@ -58,8 +62,8 @@ const LoginScreen = () => {
 
   // Login
   const loginUser = () => {
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
+    // const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, pass)
       .then((userCredential) => {
         // Logged in
         const user = userCredential.user;
@@ -74,21 +78,21 @@ const LoginScreen = () => {
   };
 
   return (
-    <KeyboardAvoidingView style={styles.container} behaviour="padding">
+    <KeyboardAvoidingView style={styles.container} behavior="padding">
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Email"
           value={email}
           onChangeText={(text) => setEmail(text)}
           style={styles.input}
-        ></TextInput>
+        />
         <TextInput
           placeholder="Password"
           value={pass}
           onChangeText={(text) => setPass(text)}
           style={styles.input}
           secureTextEntry
-        ></TextInput>
+        />
       </View>
 
       <View style={styles.buttonContainer}>
