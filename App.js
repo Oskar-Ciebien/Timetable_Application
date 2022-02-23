@@ -11,6 +11,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import LoginScreen from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
 import SettingsScreen from "./screens/SettingsScreen";
+import TimetableScreen from "./screens/TimetableScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -56,6 +57,36 @@ function Tabs() {
                 style={{ color: focused ? "#2b7eba" : "grey", fontSize: 14 }}
               >
                 Home Page
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Timetable"
+        component={TimetableScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                marginTop: 0,
+              }}
+            >
+              <Image
+                source={require("./assets/icons/timetable.png")}
+                resizeMode="contain"
+                style={{
+                  width: 28,
+                  height: 28,
+                  tintColor: focused ? "#2b7eba" : "grey",
+                }}
+              />
+              <Text
+                style={{ color: focused ? "#2b7eba" : "grey", fontSize: 14 }}
+              >
+                Timetable
               </Text>
             </View>
           ),
