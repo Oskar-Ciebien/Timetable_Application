@@ -9,16 +9,34 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 // Screens
 import LoginScreen from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
+import SettingsScreen from "./screens/SettingsScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 // Tabs
-const Tabs = () => {
-  <Tab.Navigator>
-    <Tab.Screen name="Home" component={HomeScreen} />
-  </Tab.Navigator>;
-};
+function Tabs() {
+  return (
+    <Tab.Navigator
+      tabBarOptions={{
+        showLabel: true,
+        style: {
+          position: "absolute",
+          bottom: 40,
+          left: 30,
+          right: 30,
+          elevation: 0,
+          backgroundColor: "grey",
+          borderRadius: 15,
+          height: 90,
+        },
+      }}
+    >
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
+    </Tab.Navigator>
+  );
+}
 
 export default function App() {
   return (
@@ -31,8 +49,8 @@ export default function App() {
         />
         <Stack.Screen
           name="Home"
-          options={{ headerShown: true }}
-          component={HomeScreen}
+          options={{ headerShown: false }}
+          component={Tabs}
         />
       </Stack.Navigator>
     </NavigationContainer>
