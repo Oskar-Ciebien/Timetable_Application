@@ -1,6 +1,6 @@
 // Imports
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 
 // Navigation
 import { NavigationContainer } from "@react-navigation/native";
@@ -20,20 +20,77 @@ function Tabs() {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        showLabel: true,
+        showLabel: false,
         style: {
-          position: "absolute",
-          bottom: 40,
-          left: 30,
-          right: 30,
-          backgroundColor: "black",
-          borderRadius: 15,
-          height: 90,
+          // position: "absolute",
+          // marginBottom: 40,
+          // marginLeft: 30,
+          // marginRight: 30,
+          // borderRadius: 15,
+          // height: 200,
         },
       }}
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                marginTop: 0,
+              }}
+            >
+              <Image
+                source={require("./assets/icons/homepage.png")}
+                resizeMode="contain"
+                style={{
+                  width: 28,
+                  height: 28,
+                  tintColor: focused ? "#2b7eba" : "grey",
+                }}
+              />
+              <Text
+                style={{ color: focused ? "#2b7eba" : "grey", fontSize: 14 }}
+              >
+                Home Page
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                marginTop: 0,
+              }}
+            >
+              <Image
+                source={require("./assets/icons/settings.png")}
+                resizeMode="contain"
+                style={{
+                  width: 28,
+                  height: 28,
+                  tintColor: focused ? "#2b7eba" : "grey",
+                }}
+              />
+              <Text
+                style={{ color: focused ? "#2b7eba" : "grey", fontSize: 14 }}
+              >
+                Settings
+              </Text>
+            </View>
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }
