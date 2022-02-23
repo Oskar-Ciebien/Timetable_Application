@@ -76,6 +76,11 @@ const LoginScreen = () => {
       });
   };
 
+  // Login
+  const forgotPassword = () => {
+    
+  };
+
   return (
     <KeyboardAvoidingView style={styles.container}>
       <View style={styles.inputContainer}>
@@ -98,11 +103,16 @@ const LoginScreen = () => {
         <TouchableOpacity onPress={loginUser} style={styles.button}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
+
         <TouchableOpacity
           onPress={registerUser}
           style={[styles.button, styles.buttonOutline]}
         >
           <Text style={styles.buttonOutlineText}>Register</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={forgotPassword} style={[styles.forgotText]}>
+          <Text>Forgot Password?</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
@@ -154,5 +164,11 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "700",
     fontSize: 16,
+  },
+  forgotText: {
+    marginTop: 30,
+    color: "black",
+    fontWeight: "600",
+    fontSize: 14,
   },
 });
