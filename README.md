@@ -6,8 +6,20 @@
     <strong>Supervisor:</strong> Mr. Martin Hynes
 </p>
 
+---
+
 ## Introduction
 
 This is the Final Year Project of the Bachelor of Science (Honours) in Computing in Software Development 2021 - 2022.
 
 My project will be developed using React Native. It will be a Timetable Application, which will have security features to protect the timetable from being tampered with.
+
+## How to open this Project
+
+## How to run this project
+
+## Requirements
+
+## Credits
+
+## Contact
