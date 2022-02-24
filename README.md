@@ -8,6 +8,15 @@
 
 ---
 
+# Table of Contents
+
+- [Introduction](#introduction)
+- [How to open this Project](#how-to-open-this-project)
+- [How to run this project](#how-to-run-this-project)
+- [Requirements](#requirements)
+- [Credits](#credits)
+- [Contact](#contact)
+
 ## Introduction
 
 This is the Final Year Project of the Bachelor of Science (Honours) in Computing in Software Development 2021 - 2022.
@@ -16,7 +25,7 @@ My project will be developed using React Native. It will be a Timetable Applicat
 
 ## How to open this Project
 
-## How to run this project
+## How to run this Project
 
 ## Requirements
 
