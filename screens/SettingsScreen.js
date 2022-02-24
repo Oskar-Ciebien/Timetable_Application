@@ -17,21 +17,25 @@ const SettingsScreen = () => {
   // Change Password
   const changePassword = () => {
     console.log("Pressed Change Password");
+    navigation.replace("ChangePassword");
   };
 
   // Change Email
   const changeEmail = () => {
     console.log("Pressed Change Email");
+    navigation.replace("ChangeEmail");
   };
 
   // Forgot Password
   const forgotPassword = () => {
     console.log("Pressed Forgot Password");
+    navigation.replace("ForgotPassword");
   };
 
   // Delete Account
   const deleteAccount = () => {
     console.log("Pressed Delete Account");
+    navigation.replace("DeleteAccount");
   };
 
   // Log Out

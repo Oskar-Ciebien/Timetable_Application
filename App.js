@@ -12,6 +12,10 @@ import LoginScreen from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 import TimetableScreen from "./screens/TimetableScreen";
+import ChangePasswordScreen from "./screens/ChangePasswordScreen";
+import ForgotPasswordScreen from "./screens/ForgotPasswordScreen";
+import ChangeEmailScreen from "./screens/ChangeEmailScreen";
+import DeleteAccountScreen from "./screens/DeleteAccountScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -139,6 +143,26 @@ export default function App() {
           name="Home"
           options={{ headerShown: false }}
           component={Tabs}
+        />
+        <Stack.Screen
+          name="ChangePassword"
+          options={{ headerShown: false }}
+          component={ChangePasswordScreen}
+        />
+        <Stack.Screen
+          name="ForgotPassword"
+          options={{ headerShown: false }}
+          component={ForgotPasswordScreen}
+        />
+        <Stack.Screen
+          name="ChangeEmail"
+          options={{ headerShown: false }}
+          component={ChangeEmailScreen}
+        />
+        <Stack.Screen
+          name="DeleteAccount"
+          options={{ headerShown: false }}
+          component={DeleteAccountScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
