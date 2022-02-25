@@ -76,7 +76,7 @@ const LoginScreen = () => {
 
   // forgotPassword
   const forgotPassword = () => {
-    console.log("Pressed Go Home");
+    console.log("Pressed Forgot Password");
     navigation.replace("ForgotPassword");
   };
 
