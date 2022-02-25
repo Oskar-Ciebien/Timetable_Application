@@ -75,7 +75,10 @@ const LoginScreen = () => {
   };
 
   // forgotPassword
-  const forgotPassword = () => {};
+  const forgotPassword = () => {
+    console.log("Pressed Go Home");
+    navigation.replace("ForgotPassword");
+  };
 
   return (
     <KeyboardAvoidingView style={styles.container}>
