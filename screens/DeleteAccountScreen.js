@@ -5,6 +5,8 @@ import {
   TouchableOpacity,
   TextInput,
   KeyboardAvoidingView,
+  Alert,
+  Button,
 } from "react-native";
 import React, { useState } from "react";
 
@@ -23,51 +25,88 @@ const DeleteAccountScreen = () => {
   const user = auth.currentUser;
 
   const [pass, setPass] = useState("");
+  const [showBox, setShowBox] = useState(true);
+
+  let userAuthenticated = false;
 
   // Re-authentication
-  reauthenticate = (pass) => {
+  const reauthenticate = (pass) => {
     console.log(pass);
 
     const credential = EmailAuthProvider.credential(user.email, pass);
 
     console.log(credential);
+    console.log(userAuthenticated);
 
     reauthenticateWithCredential(user, credential)
       .then(() => {
         // User re-authenticated.
         console.log("Authentication passed, user: ", credential);
+
+        console.log(userAuthenticated);
+        userAuthenticated = true;
+        console.log(userAuthenticated);
+
+        confirmDelete();
       })
       .catch((error) => {
         // An error ocurred
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log("Error with re-authentication: ", errorCode, errorMessage);
+
+        userAuthenticated = false;
         // ...
       });
   };
 
   const deleteAccount = () => {
     console.log(pass);
-    reauthenticate(pass);
 
     console.log("Deleting account: " + user);
 
-    deleteUser(user)
-      .then(() => {
-        // User deleted.
-        console.log("Deleted Account - Successful");
-        navigation.replace("Login");
-      })
-      .catch((error) => {
-        // An error ocurred
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log("Error: ", errorCode, errorMessage);
-        // ...
-      });
+    console.log(userAuthenticated);
+
+    if (userAuthenticated == true) {
+      deleteUser(user)
+        .then(() => {
+          // User deleted.
+          console.log("Deleted Account - Successful");
+          navigation.replace("Login");
+        })
+        .catch((error) => {
+          // An error ocurred
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log("Error: ", errorCode, errorMessage);
+          // ...
+        });
+    } else {
+      console.log("Account has not been deleted.");
+    }
   };
 
-  // Change Password
+  const checkAccount = () => {
+    reauthenticate(pass);
+  };
+
+  const confirmDelete = () => {
+    Alert.alert("Are you sure?", "Should we delete your account?", [
+      {
+        text: "Yes",
+        onPress: () => {
+          console.log("Yes Pressed!");
+          deleteAccount();
+        },
+      },
+      {
+        text: "No",
+        onPress: () => console.log("Cancel Pressed"),
+      },
+    ]);
+  };
+
+  // Go Home
   const goHome = () => {
     console.log("Pressed Go Home");
     navigation.replace("Home");
@@ -90,7 +129,7 @@ const DeleteAccountScreen = () => {
         />
       </View>
 
-      <TouchableOpacity onPress={deleteAccount} style={styles.buttonContainer}>
+      <TouchableOpacity onPress={checkAccount} style={styles.buttonContainer}>
         <View>
           <Text style={styles.buttonText}>Confirm</Text>
         </View>
