@@ -4,11 +4,14 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getDatabase } from "firebase/database";
 
 // Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBTzgeg_bl-or1dmGdmvYOHdtw66OSLbiU",
   authDomain: "timetable-application-e02f3.firebaseapp.com",
+  databaseURL:
+    "https://timetable-application-e02f3-default-rtdb.europe-west1.firebasedatabase.app/",
   projectId: "timetable-application-e02f3",
   storageBucket: "timetable-application-e02f3.appspot.com",
   messagingSenderId: "711187696881",
@@ -17,10 +20,12 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// Database
-// const db = getFirestore(app);
+
 // Authentication
 const auth = getAuth();
+
+// Database
+const database = getDatabase(app);
 
 // Listen for authentication state to change.
 onAuthStateChanged(auth, (user) => {
@@ -31,4 +36,4 @@ onAuthStateChanged(auth, (user) => {
   // Do other things
 });
 
-export { auth };
+export { auth, database };
