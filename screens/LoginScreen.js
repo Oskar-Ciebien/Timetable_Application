@@ -13,7 +13,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 
 // Firebase
-import { auth } from "../firebase";
+import { auth, database, ref, set } from "../firebase";
 import {
   onAuthStateChanged,
   createUserWithEmailAndPassword,
@@ -32,6 +32,14 @@ const LoginScreen = () => {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid;
+
+        // Save user under users by userid
+        set(ref(database, "users/" + uid), {
+          // Save the users email
+          email: user.email,
+        });
+
+        // Move to home screen
         navigation.replace("Home");
         // ...
       } else {
