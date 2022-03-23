@@ -18,6 +18,11 @@ const AddTimetableScreen = () => {
   // Navigation
   const navigation = useNavigation();
 
+  const [name, setName] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
+  const [date, setDate] = useState("");
+
   // Back to Home Tabs
   const goHome = () => {
     console.log("Pressed Go Home Tabs");
@@ -29,6 +34,37 @@ const AddTimetableScreen = () => {
       <View style={styles.textContainer}>
         <Text style={styles.text}>You are on the Add To Timetable Screen</Text>
         <Text style={styles.text}>Your email: {auth.currentUser?.email}</Text>
+      </View>
+
+      <View style={styles.textContainer}>
+        <Text>Name:</Text>
+        <TextInput
+          placeholder="Name of Class"
+          value={name}
+          onChangeText={(text) => setName(text)}
+          style={styles.input}
+        />
+        <Text>Start Time:</Text>
+        <TextInput
+          placeholder="Start Time"
+          value={startTime}
+          onChangeText={(text) => setStartTime(text)}
+          style={styles.input}
+        />
+        <Text>End Time:</Text>
+        <TextInput
+          placeholder="End Time"
+          value={endTime}
+          onChangeText={(text) => setEndTime(text)}
+          style={styles.input}
+        />
+        <Text>Date:</Text>
+        <TextInput
+          placeholder="Date"
+          value={date}
+          onChangeText={(text) => setDate(text)}
+          style={styles.input}
+        />
       </View>
 
       <TouchableOpacity onPress={goHome} style={styles.homeButton}>
