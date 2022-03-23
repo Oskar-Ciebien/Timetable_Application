@@ -1,6 +1,6 @@
 // Imports
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
+import { StyleSheet, Text, TouchableOpacity, View, Switch } from "react-native";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 // Navigation
@@ -13,6 +13,16 @@ import { signOut } from "firebase/auth";
 const SettingsScreen = () => {
   // Navigation
   const navigation = useNavigation();
+
+  const [isEnabled, setIsEnabled] = useState(false);
+
+  // Dark Mode
+  const darkMode = () => {
+    console.log("Pressed Dark Mode");
+
+    // Switch between enabled options
+    setIsEnabled((previously) => !previously);
+  };
 
   // Change Password
   const changePassword = () => {
@@ -56,6 +66,19 @@ const SettingsScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.menu}>
+        <View style={styles.menuItem}>
+          <Text style={styles.menuText}>Dark Mode</Text>
+          <Switch
+            style={styles.menuSwitch}
+            trackColor={{ false: "orange", true: "black" }}
+            thumbColor={isEnabled ? "orange" : "black"}
+            onValueChange={darkMode}
+            value={isEnabled}
+          />
+        </View>
+      </View>
+
       <TouchableOpacity onPress={changePassword}>
         <View style={styles.menu}>
           <View style={styles.menuItem}>
@@ -123,6 +146,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     fontSize: 22,
     lineHeight: 27,
+    alignSelf: "center",
   },
   deleteAccountText: {
     color: "red",
@@ -146,5 +170,9 @@ const styles = StyleSheet.create({
     padding: 8,
     fontWeight: "700",
     fontSize: 22,
+  },
+  menuSwitch: {
+    position: "relative",
+    left: 20,
   },
 });
