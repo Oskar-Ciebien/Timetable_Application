@@ -13,11 +13,17 @@ const TimetableScreen = () => {
   // Navigation
   const navigation = useNavigation();
 
+  // Add To Timetable
+  const addTimetable = () => {
+    console.log("Pressed Add Timetable");
+    navigation.replace("AddTimetable");
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Text>Timetable Screen</Text>
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity onPress={addTimetable} style={styles.button}>
         <Image
           source={require(".././assets/icons/plus_icon.png")}
           resizeMode="contain"

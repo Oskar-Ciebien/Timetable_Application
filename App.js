@@ -16,6 +16,7 @@ import ChangePasswordScreen from "./screens/ChangePasswordScreen";
 import ForgotPasswordScreen from "./screens/ForgotPasswordScreen";
 import ChangeEmailScreen from "./screens/ChangeEmailScreen";
 import DeleteAccountScreen from "./screens/DeleteAccountScreen";
+import AddTimetableScreen from "./screens/AddTimetableScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -163,6 +164,11 @@ export default function App() {
           name="DeleteAccount"
           options={{ headerShown: false }}
           component={DeleteAccountScreen}
+        />
+        <Stack.Screen
+          name="AddTimetable"
+          options={{ headerShown: false }}
+          component={AddTimetableScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
