@@ -140,7 +140,7 @@ export default function App() {
           component={LoginScreen}
         />
         <Stack.Screen
-          name="Home"
+          name="HomeTabs"
           options={{ headerShown: false }}
           component={Tabs}
         />

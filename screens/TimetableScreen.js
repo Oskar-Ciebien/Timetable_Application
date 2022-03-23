@@ -6,6 +6,9 @@ import React from "react";
 import { useNavigation } from "@react-navigation/core";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+// Firebase
+import { database, ref } from "../firebase";
+
 const TimetableScreen = () => {
   // Navigation
   const navigation = useNavigation();

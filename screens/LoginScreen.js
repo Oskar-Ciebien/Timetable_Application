@@ -40,11 +40,10 @@ const LoginScreen = () => {
         });
 
         // Move to home screen
-        navigation.replace("Home");
+        navigation.replace("HomeTabs");
         // ...
       } else {
         // User is signed out
-        alert(error);
         // ...
       }
     });

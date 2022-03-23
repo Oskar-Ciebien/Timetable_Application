@@ -71,7 +71,7 @@ const ChangeEmailScreen = () => {
   // Go Home
   const goHome = () => {
     console.log("Pressed Go Home");
-    navigation.replace("Home");
+    navigation.replace("HomeTabs");
   };
 
   return (
