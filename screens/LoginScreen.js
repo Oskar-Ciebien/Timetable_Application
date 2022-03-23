@@ -44,6 +44,7 @@ const LoginScreen = () => {
         // ...
       } else {
         // User is signed out
+        alert(error);
         // ...
       }
     });
@@ -62,6 +63,9 @@ const LoginScreen = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log("Error: ", errorCode, errorMessage);
+
+        // Display to user
+        alert(error.message);
         // ..
       });
   };
@@ -79,6 +83,9 @@ const LoginScreen = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log("Error: ", error.code, error.message);
+
+        // Display to user
+        alert(error.message);
       });
   };
 
