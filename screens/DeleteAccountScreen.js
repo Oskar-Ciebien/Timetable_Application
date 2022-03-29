@@ -14,7 +14,7 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 
 // Firebase
-import { auth } from "../firebase";
+import { auth, database, ref } from "../firebase";
 import { deleteUser, reauthenticateWithCredential } from "firebase/auth";
 import { EmailAuthProvider } from "firebase/auth";
 
@@ -34,6 +34,7 @@ const DeleteAccountScreen = () => {
     console.log(pass);
 
     const credential = EmailAuthProvider.credential(user.email, pass);
+    const uid = user.uid;
 
     console.log(credential);
     console.log(userAuthenticated);
@@ -53,7 +54,11 @@ const DeleteAccountScreen = () => {
         // An error ocurred
         const errorCode = error.code;
         const errorMessage = error.message;
+
         console.log("Error with re-authentication: ", errorCode, errorMessage);
+
+        // Alert about authentication
+        alert("Problem with Authentication", error.message);
 
         userAuthenticated = false;
         // ...
@@ -69,9 +74,22 @@ const DeleteAccountScreen = () => {
 
     if (userAuthenticated == true) {
       deleteUser(user)
-        .then(() => {
+        .then(async () => {
           // User deleted.
           console.log("Deleted Account - Successful");
+
+          // Remove user from database
+          
+
+          // database.ref("/users/" + user.uid).remove();
+
+          // ref(database, "users/" + user.uid).remove();
+
+          // await database()
+          //   .ref("/users/" + uid)
+          //   .remove();
+
+          // Navigate back to Login Screen
           navigation.replace("Login");
         })
         .catch((error) => {
