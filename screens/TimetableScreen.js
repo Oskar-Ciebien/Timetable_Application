@@ -27,7 +27,7 @@ const TimetableScreen = () => {
         <Image
           source={require(".././assets/icons/plus_icon.png")}
           resizeMode="contain"
-          style={styles.buttonIcon}
+          style={[styles.buttonIcon, { tintColor: "orange" }]}
         />
       </TouchableOpacity>
     </SafeAreaView>
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     right: 30,
   },
   buttonIcon: {
+    tintColor: "black",
     width: 60,
     height: 60,
   },
