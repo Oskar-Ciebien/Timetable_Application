@@ -4,7 +4,7 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref, set, onValue, get } from "firebase/database";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -25,7 +25,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 
 // Database
-const database = getDatabase(app);
+const database = getDatabase();
 
 // Listen for authentication state to change.
 onAuthStateChanged(auth, (user) => {
@@ -36,4 +36,4 @@ onAuthStateChanged(auth, (user) => {
   // Do other things
 });
 
-export { auth, database, ref, set };
+export { auth, database, ref, set, onValue, get };
