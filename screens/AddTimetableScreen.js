@@ -26,7 +26,7 @@ const AddTimetableScreen = () => {
   // Back to Home Tabs
   const goTimetable = () => {
     console.log("Pressed Go Timetable Tabs");
-    navigation.replace("TimetableTabs");
+    navigation.navigate("HomeTabs", { screen: "Timetable" });
   };
 
   return (

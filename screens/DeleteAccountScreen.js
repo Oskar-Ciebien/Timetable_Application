@@ -106,10 +106,10 @@ const DeleteAccountScreen = () => {
     ]);
   };
 
-  // Go Home
-  const goHome = () => {
-    console.log("Pressed Go Home");
-    navigation.replace("HomeTabs");
+  // Go Back
+  const goBack = () => {
+    console.log("Pressed Go Back");
+    navigation.navigate("HomeTabs", { screen: "Settings" });
   };
 
   return (
@@ -135,9 +135,9 @@ const DeleteAccountScreen = () => {
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={goHome} style={styles.homeButton}>
+      <TouchableOpacity onPress={goBack} style={styles.backButton}>
         <View>
-          <Text style={styles.homeButtonText}>Go Back</Text>
+          <Text style={styles.backButtonText}>Go Back</Text>
         </View>
       </TouchableOpacity>
     </KeyboardAvoidingView>
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 22,
   },
-  homeButton: {
+  backButton: {
     marginTop: 50,
     fontSize: 22,
     backgroundColor: "green",
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 10,
   },
-  homeButtonText: {
+  backButtonText: {
     color: "white",
     fontSize: 22,
   },

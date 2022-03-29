@@ -37,10 +37,10 @@ const ForgotPasswordScreen = () => {
       });
   };
 
-  // Change Password
-  const goLogin = () => {
-    console.log("Pressed Go Home");
-    navigation.replace("Login");
+  // GoBack
+  const goBack = () => {
+    console.log("Pressed Go Back");
+    navigation.navigate("HomeTabs", { screen: "Settings" });
   };
 
   return (
@@ -64,9 +64,9 @@ const ForgotPasswordScreen = () => {
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={goLogin} style={styles.loginButton}>
+      <TouchableOpacity onPress={goBack} style={styles.backButton}>
         <View>
-          <Text style={styles.loginButtonText}>Go Back</Text>
+          <Text style={styles.backButtonText}>Go Back</Text>
         </View>
       </TouchableOpacity>
     </KeyboardAvoidingView>
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 22,
   },
-  loginButton: {
+  backButton: {
     marginTop: 50,
     fontSize: 22,
     backgroundColor: "green",
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 10,
   },
-  loginButtonText: {
+  backButtonText: {
     color: "white",
     fontSize: 22,
   },
