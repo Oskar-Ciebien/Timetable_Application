@@ -16,11 +16,9 @@ const TimetableScreen = () => {
   // Current User
   const user = auth.currentUser;
 
-  // const [id, setId] = useState();
-  const [email, setEmail] = useState();
-  const [data, setData] = useState();
-
-  // const users = ref(db, "users/");
+  // Database Variables
+  let email = "";
+  let data = "";
 
   // Add To Timetable
   const addTimetable = () => {
@@ -31,46 +29,20 @@ const TimetableScreen = () => {
   // User Reference
   const usersRef = ref(database, "users/" + user.uid);
 
-  // useEffect(() => {
   // onValue
   onValue(usersRef, (snapshot) => {
-    this.email = snapshot.val().email;
-    // Set data to values read from database
-    this.data = snapshot.val();
+    // Set data from database to variables
+    email = snapshot.val().email;
+    data = snapshot.val();
 
     // Print out Data from Database
-    console.log(data);
-    console.log(email);
-
-    setValues();
+    console.log("Data " + data);
+    console.log("Email " + email);
   });
-  // }, []);
-
-  const setValues = () => {
-    setData(data);
-    setEmail(email);
-  };
-
-  // // User Reference
-  // const usersRef = ref(database());
-
-  // get(child(usersRef, "users/" + user.uid))
-  //   .then((snapshot) => {
-  //     if (snapshot.exists()) {
-  //       console.log(snapshot.val());
-  //     } else {
-  //       console.log("No data available");
-  //     }
-  //   })
-  //   .catch((error) => {
-  //     console.error(error);
-  //   });
 
   return (
     <SafeAreaView style={styles.container}>
       <Text>Timetable Screen</Text>
-      {/* <Text>{data}</Text> */}
-      {/* <Text>{this.email}</Text> */}
 
       <Text>{`${email}`} </Text>
 
