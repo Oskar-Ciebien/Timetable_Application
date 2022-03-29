@@ -24,9 +24,9 @@ const AddTimetableScreen = () => {
   const [date, setDate] = useState("");
 
   // Back to Home Tabs
-  const goHome = () => {
-    console.log("Pressed Go Home Tabs");
-    navigation.replace("HomeTabs");
+  const goTimetable = () => {
+    console.log("Pressed Go Timetable Tabs");
+    navigation.replace("TimetableTabs");
   };
 
   return (
@@ -67,9 +67,9 @@ const AddTimetableScreen = () => {
         />
       </View>
 
-      <TouchableOpacity onPress={goHome} style={styles.homeButton}>
+      <TouchableOpacity onPress={goTimetable} style={styles.timetableButton}>
         <View>
-          <Text style={styles.homeButtonText}>Go Back</Text>
+          <Text style={styles.timetableButtonText}>Go Back</Text>
         </View>
       </TouchableOpacity>
     </KeyboardAvoidingView>
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 22,
   },
-  homeButton: {
+  timetableButton: {
     marginTop: 50,
     fontSize: 22,
     backgroundColor: "green",
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 10,
   },
-  homeButtonText: {
+  timetableButtonText: {
     color: "white",
     fontSize: 22,
   },

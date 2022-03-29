@@ -146,6 +146,11 @@ export default function App() {
           component={Tabs}
         />
         <Stack.Screen
+          name="TimetableTabs"
+          options={{ headerShown: false }}
+          component={Tabs}
+        />
+        <Stack.Screen
           name="ChangePassword"
           options={{ headerShown: false }}
           component={ChangePasswordScreen}
