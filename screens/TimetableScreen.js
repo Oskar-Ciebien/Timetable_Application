@@ -1,13 +1,13 @@
 // Imports
 import { StyleSheet, Text, TouchableOpacity, Image } from "react-native";
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 // Navigation
 import { useNavigation } from "@react-navigation/core";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 // Firebase
-import { database, auth, ref, onValue, get } from "../firebase";
+import { database, auth, ref, onValue, get, child } from "../firebase";
 
 const TimetableScreen = () => {
   // Navigation
@@ -26,19 +26,41 @@ const TimetableScreen = () => {
     navigation.replace("AddTimetable");
   };
 
-  // User Reference
-  const usersRef = ref(database, "users/" + user.uid);
+  // User Reference for Real-Time
+  const usersRealTimeRef = ref(database, "users/" + user.uid);
 
-  // onValue
-  onValue(usersRef, (snapshot) => {
+  // onValue - Real-Time
+  onValue(usersRealTimeRef, (snapshot) => {
     // Set data from database to variables
     email = snapshot.val().email;
     data = snapshot.val();
 
     // Print out Data from Database
-    console.log("Data " + data);
-    console.log("Email " + email);
+    console.log("[Real-Time] Data " + data);
+    console.log("[Real-Time] Email " + email);
   });
+
+  // User Reference for Once
+  const usersOnceRef = ref(database);
+
+  // Read - Once
+  get(child(usersOnceRef, `users/${user.uid}`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        // Set data from database to variables
+        email = snapshot.val().email;
+        data = snapshot.val();
+
+        // Print out Data from Database
+        console.log("[Once] Data " + data);
+        console.log("[Once] Email " + email);
+      } else {
+        console.log("[Once] No data available");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 
   return (
     <SafeAreaView style={styles.container}>
