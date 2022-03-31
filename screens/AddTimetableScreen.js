@@ -13,21 +13,32 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 
 // Firebase
-import { auth, database } from "../firebase";
+import { auth, database, set, ref } from "../firebase";
 
 const AddTimetableScreen = () => {
   // Navigation
   const navigation = useNavigation();
 
+  // Consts for class details
   const [name, setName] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
-  const [date, setDate] = useState("");
   const [day, setDay] = useState("");
 
-  // Back to Home Tabs
-  const submitClass = () => {
-    console.log("Pressed Go Timetable Tabs");
+  // UID of current user
+  const uid = auth.currentUser.uid;
+
+  // Save timetable details under user's id
+  const saveClassToDatabase = () => {
+    // Save under classes under user uid
+    set(ref(database, "classes/" + uid), {
+      className: name,
+      classStartTime: startTime,
+      classEndTime: endTime,
+      classDay: day,
+    });
+
+    // Navigate back to Timetable Screen
     navigation.navigate("HomeTabs", { screen: "Timetable" });
   };
 
@@ -74,6 +85,7 @@ const AddTimetableScreen = () => {
           onChangeText={(text) => setStartTime(text)}
           style={styles.input}
         />
+
         <Text>End Time:</Text>
         <TextInput
           placeholder="End Time"
@@ -81,16 +93,12 @@ const AddTimetableScreen = () => {
           onChangeText={(text) => setEndTime(text)}
           style={styles.input}
         />
-        <Text>Date:</Text>
-        <TextInput
-          placeholder="Date"
-          value={date}
-          onChangeText={(text) => setDate(text)}
-          style={styles.input}
-        />
       </View>
 
-      <TouchableOpacity onPress={submitClass} style={styles.submitButton}>
+      <TouchableOpacity
+        onPress={saveClassToDatabase}
+        style={styles.submitButton}
+      >
         <View>
           <Text style={styles.submitButtonText}>
             Add this Class to Timetable

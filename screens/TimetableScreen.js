@@ -66,7 +66,7 @@ const TimetableScreen = () => {
     <SafeAreaView style={styles.container}>
       <Text>Timetable Screen</Text>
 
-      <Text>{`${email}`} </Text>
+      <Text>{`${email}`}</Text>
 
       <TouchableOpacity onPress={addTimetable} style={styles.button}>
         <Image
