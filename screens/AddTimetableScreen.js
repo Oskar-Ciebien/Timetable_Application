@@ -6,6 +6,7 @@ import {
   KeyboardAvoidingView,
   TextInput,
   Picker,
+  Button,
 } from "react-native";
 import React, { useState } from "react";
 
@@ -15,14 +16,73 @@ import { useNavigation } from "@react-navigation/core";
 // Firebase
 import { auth, database, set, ref } from "../firebase";
 
+// DataTimePicker
+import DateTimePicker from "@react-native-community/datetimepicker";
+
+// Variables for times
+let isStartTime = false;
+let isEndTime = false;
+let startTime = "";
+let endTime = "";
+
 const AddTimetableScreen = () => {
   // Navigation
   const navigation = useNavigation();
 
+  // Time/Date Picker Variables
+  const [date, setDate] = useState(new Date());
+  const [mode, setMode] = useState("time");
+  const [show, setShow] = useState(false);
+
+  // onChange - Time/Date Picker
+  const onChange = (event, selectedDate) => {
+    // Set current Date to the selected date
+    const currentDate = selectedDate;
+
+    // Disable clock
+    setShow(false);
+
+    // Set Date to current date
+    setDate(currentDate);
+
+    // If start time is true
+    if (isStartTime === true) {
+      // Set startTime to the hours and minutes picked by user
+      startTime = currentDate.getHours() + ":" + currentDate.getMinutes();
+
+      // Set boolean back to false
+      isStartTime = false;
+    } else if (isEndTime === true) {
+      // Set endTime to the hours and minutes picked by user
+      endTime = currentDate.getHours() + ":" + currentDate.getMinutes();
+
+      // Set boolean back to false
+      isEndTime = false;
+    }
+  };
+
+  // showStartTimePicker - Time/Date Picker
+  const showStartTimePicker = () => {
+    // Set boolean to true
+    isStartTime = true;
+
+    // Open the clock window
+    setShow(true);
+    setMode("time");
+  };
+
+  //showEndTimePicker - Time/Date Picker
+  const showEndTimePicker = () => {
+    // Set boolean to true
+    isEndTime = true;
+
+    // Open the clock window
+    setShow(true);
+    setMode("time");
+  };
+
   // Consts for class details
   const [name, setName] = useState("");
-  const [startTime, setStartTime] = useState("");
-  const [endTime, setEndTime] = useState("");
   const [day, setDay] = useState("");
 
   // UID of current user
@@ -52,7 +112,7 @@ const AddTimetableScreen = () => {
     <KeyboardAvoidingView style={styles.container}>
       <View style={styles.textContainer}>
         <Text style={styles.text}>Adding new Class</Text>
-        {/* <Text style={styles.text}>Your email: {auth.currentUser?.email}</Text> */}
+        <Text style={styles.text}>Your email: {auth.currentUser?.email}</Text>
       </View>
 
       <View style={styles.textContainer}>
@@ -63,7 +123,6 @@ const AddTimetableScreen = () => {
           onChangeText={(text) => setName(text)}
           style={styles.input}
         />
-
         <Picker
           selectedValue={day}
           style={styles.input}
@@ -78,21 +137,32 @@ const AddTimetableScreen = () => {
           <Picker.Item label="Sunday" value="sunday" />
         </Picker>
 
-        <Text>Start Time:</Text>
-        <TextInput
-          placeholder="Start Time"
-          value={startTime}
-          onChangeText={(text) => setStartTime(text)}
-          style={styles.input}
-        />
+        <Text>Start Time : {startTime}</Text>
+        <Button onPress={showStartTimePicker} title="Start Time!" />
 
-        <Text>End Time:</Text>
-        <TextInput
-          placeholder="End Time"
-          value={endTime}
-          onChangeText={(text) => setEndTime(text)}
-          style={styles.input}
-        />
+        {show && (
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={date}
+            mode={mode}
+            is24Hour={true}
+            onChange={onChange}
+          />
+        )}
+
+        <Text>End Time : {endTime}</Text>
+
+        <Button onPress={showEndTimePicker} title="End Time!" />
+
+        {show && (
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={date}
+            mode={mode}
+            is24Hour={true}
+            onChange={onChange}
+          />
+        )}
       </View>
 
       <TouchableOpacity
