@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   TextInput,
+  Picker,
 } from "react-native";
 import React, { useState } from "react";
 
@@ -22,6 +23,13 @@ const AddTimetableScreen = () => {
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [date, setDate] = useState("");
+  const [day, setDay] = useState("");
+
+  // Back to Home Tabs
+  const submitClass = () => {
+    console.log("Pressed Go Timetable Tabs");
+    navigation.navigate("HomeTabs", { screen: "Timetable" });
+  };
 
   // Back to Home Tabs
   const goTimetable = () => {
@@ -32,8 +40,8 @@ const AddTimetableScreen = () => {
   return (
     <KeyboardAvoidingView style={styles.container}>
       <View style={styles.textContainer}>
-        <Text style={styles.text}>You are on the Add To Timetable Screen</Text>
-        <Text style={styles.text}>Your email: {auth.currentUser?.email}</Text>
+        <Text style={styles.text}>Adding new Class</Text>
+        {/* <Text style={styles.text}>Your email: {auth.currentUser?.email}</Text> */}
       </View>
 
       <View style={styles.textContainer}>
@@ -44,6 +52,21 @@ const AddTimetableScreen = () => {
           onChangeText={(text) => setName(text)}
           style={styles.input}
         />
+
+        <Picker
+          selectedValue={day}
+          style={styles.input}
+          onValueChange={(itemValue, itemIndex) => setDay(itemValue)}
+        >
+          <Picker.Item label="Monday" value="monday" />
+          <Picker.Item label="Tuesday" value="tuesday" />
+          <Picker.Item label="Wednesday" value="wednesday" />
+          <Picker.Item label="Thursday" value="thursday" />
+          <Picker.Item label="Friday" value="friday" />
+          <Picker.Item label="Saturday" value="saturday" />
+          <Picker.Item label="Sunday" value="sunday" />
+        </Picker>
+
         <Text>Start Time:</Text>
         <TextInput
           placeholder="Start Time"
@@ -66,6 +89,14 @@ const AddTimetableScreen = () => {
           style={styles.input}
         />
       </View>
+
+      <TouchableOpacity onPress={submitClass} style={styles.submitButton}>
+        <View>
+          <Text style={styles.submitButtonText}>
+            Add this Class to Timetable
+          </Text>
+        </View>
+      </TouchableOpacity>
 
       <TouchableOpacity onPress={goTimetable} style={styles.timetableButton}>
         <View>
@@ -91,10 +122,22 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 22,
   },
-  timetableButton: {
+  submitButton: {
     marginTop: 50,
     fontSize: 22,
     backgroundColor: "green",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+  },
+  submitButtonText: {
+    color: "white",
+    fontSize: 22,
+  },
+  timetableButton: {
+    marginTop: 50,
+    fontSize: 22,
+    backgroundColor: "red",
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 10,
@@ -122,10 +165,11 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   input: {
-    width: "70%",
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    marginTop: 10,
+    width: 200,
+    height: 50,
+    paddingHorizontal: 20,
+    paddingVertical: 0,
+    marginTop: 15,
     borderRadius: 10,
     borderWidth: 2,
     borderColor: "#646a6e",
