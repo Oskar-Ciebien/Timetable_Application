@@ -17,8 +17,12 @@ const TimetableScreen = () => {
   const user = auth.currentUser;
 
   // Database Variables
-  let email = "";
   let data = "";
+  let email = "";
+  let name = "";
+  let startTime = "";
+  let endTime = "";
+  let day = "";
 
   // Add To Timetable
   const addTimetable = () => {
@@ -29,31 +33,72 @@ const TimetableScreen = () => {
   // User Reference for Real-Time
   const usersRealTimeRef = ref(database, "users/" + user.uid);
 
+  // Classes Reference for Real-Time
+  const classRealTimeRef = ref(database, "classes/" + user.uid);
+
   // onValue - Real-Time
   onValue(usersRealTimeRef, (snapshot) => {
     // Set data from database to variables
-    email = snapshot.val().email;
     data = snapshot.val();
+    email = snapshot.val().email;
 
     // Print out Data from Database
     console.log("[Real-Time] Data " + data);
     console.log("[Real-Time] Email " + email);
   });
 
+  // onValue - Real-Time
+  onValue(classRealTimeRef, (snapshot) => {
+    // Set data from database to variables
+    name = snapshot.val().className;
+    startTime = snapshot.val().classStartTime;
+    endTime = snapshot.val().classEndTime;
+    day = snapshot.val().classDay;
+
+    // Print out Data from Database
+    console.log("[Real-Time] Name " + name);
+    console.log("[Real-Time] Start Time " + startTime);
+    console.log("[Real-Time] End Time " + endTime);
+    console.log("[Real-Time] Day " + day);
+  });
+
   // User Reference for Once
-  const usersOnceRef = ref(database);
+  const databaseOnceRef = ref(database);
 
   // Read - Once
-  get(child(usersOnceRef, `users/${user.uid}`))
+  get(child(databaseOnceRef, `users/${user.uid}`))
     .then((snapshot) => {
       if (snapshot.exists()) {
         // Set data from database to variables
-        email = snapshot.val().email;
         data = snapshot.val();
+        email = snapshot.val().email;
 
         // Print out Data from Database
-        console.log("[Once] Data " + data);
-        console.log("[Once] Email " + email);
+        console.log("[Real-Time] Data " + data);
+        console.log("[Real-Time] Email " + email);
+      } else {
+        console.log("[Once] No data available");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+  // Read - Once
+  get(child(databaseOnceRef, `classes/${user.uid}`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        // Set data from database to variables
+        name = snapshot.val().className;
+        startTime = snapshot.val().classStartTime;
+        endTime = snapshot.val().classEndTime;
+        day = snapshot.val().classDay;
+
+        // Print out Data from Database
+        console.log("[Real-Time] Name " + name);
+        console.log("[Real-Time] Start Time " + startTime);
+        console.log("[Real-Time] End Time " + endTime);
+        console.log("[Real-Time] Day " + day);
       } else {
         console.log("[Once] No data available");
       }
@@ -66,7 +111,12 @@ const TimetableScreen = () => {
     <SafeAreaView style={styles.container}>
       <Text>Timetable Screen</Text>
 
+      <Text>{`${data}`}</Text>
       <Text>{`${email}`}</Text>
+      <Text>{`${name}`}</Text>
+      <Text>{`${startTime}`}</Text>
+      <Text>{`${endTime}`}</Text>
+      <Text>{`${day}`}</Text>
 
       <TouchableOpacity onPress={addTimetable} style={styles.button}>
         <Image
