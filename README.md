@@ -29,7 +29,9 @@ My project will be developed using React Native. It will be a Timetable Applicat
 
 ## Requirements
 
-## Credits
+## Dissertation
+
+The Dissertation of this project can be found in a folder called **Documents**. Click [here](Documents/Dissertation.pdf) to get to the PDF file.
 
 ## Contact
 
