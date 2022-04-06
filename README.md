@@ -32,3 +32,8 @@ My project will be developed using React Native. It will be a Timetable Applicat
 ## Credits
 
 ## Contact
+
+Please feel free to get in contact with me through any of the following:
+
+- **Email:** G00369579@gmit.ie
+- **LinkedIn:** https://www.linkedin.com/in/oskar-ciebien/
