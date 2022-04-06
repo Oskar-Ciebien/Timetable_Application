@@ -23,6 +23,15 @@ This is the Final Year Project of the Bachelor of Science (Honours) in Computing
 
 My project will be developed using React Native. It will be a Timetable Application, which will have security features to protect the timetable from being tampered with.
 
+## Requirements
+
+In order to successfully run this project. You will need some required technologies.
+
+- npm - Version: 8.1.3
+- Node - Version: 16.13.0
+- Android Studio (Android Emulator) - At least Android 6 or above. (The emulator used in this project was Google Pixel 4XL with Android 11).
+- The other required packages will install after **npm start** command was run.
+
 ## How to run this Project
 
 In order to run this project, please follow the steps outlined below:
@@ -44,8 +53,6 @@ In order to run this project, please follow the steps outlined below:
 - Head over to the Internet Browser tab that has been opened by Expo and click on **Run on Android device/emulator**.
 
 7. The application will start running on your device. It may take a while for the first time the application is run.
-
-## Requirements
 
 ## Dissertation
 
