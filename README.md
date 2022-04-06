@@ -23,8 +23,6 @@ This is the Final Year Project of the Bachelor of Science (Honours) in Computing
 
 My project will be developed using React Native. It will be a Timetable Application, which will have security features to protect the timetable from being tampered with.
 
-## How to open this Project
-
 ## How to run this Project
 
 ## Requirements
