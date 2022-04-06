@@ -25,6 +25,26 @@ My project will be developed using React Native. It will be a Timetable Applicat
 
 ## How to run this Project
 
+In order to run this project, please follow the steps outlined below:
+
+1. Clone this repository to your desired location on your machine, using the command `git clone https://github.com/Oskar-Ciebien/Timetable_Application` in your terminal or console.
+
+2. Change the directory to the cloned repository folder with the command `cd Timetable_Application`.
+
+3. Install all of the required software to run this project, with the use of this command: `npm install`. This might take a while, please be patient.
+
+4. After everything has been installed, use `npm start` command to start the expo project. This will open a Metro Bundle internet browser tab through expo.
+
+5. Next you can head over to your Android Studio to run your desired emulator.
+
+6. Once you have your Android emulator running. You have two options to pick from to run the application on your emulator.
+
+- Head over to your terminal, make sure you are in the Timetable_Application directory. Then click the **A** key on your keyboard.
+
+- Head over to the Internet Browser tab that has been opened by Expo and click on **Run on Android device/emulator**.
+
+7. The application will start running on your device. It may take a while for the first time the application is run.
+
 ## Requirements
 
 ## Dissertation
