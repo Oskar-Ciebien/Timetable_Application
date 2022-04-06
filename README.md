@@ -31,6 +31,8 @@ My project will be developed using React Native. It will be a Timetable Applicat
 
 ## Dissertation
 
+There are several topics covered in the dissertation of this project. This includes the technologies used, the planning, design of the system etc.
+
 The Dissertation of this project can be found in a folder called **Documents**. Click [here](Documents/Dissertation.pdf) to get to the PDF file.
 
 ## Contact
