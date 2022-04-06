@@ -11,10 +11,9 @@
 # Table of Contents
 
 - [Introduction](#introduction)
-- [How to open this Project](#how-to-open-this-project)
-- [How to run this project](#how-to-run-this-project)
 - [Requirements](#requirements)
-- [Credits](#credits)
+- [How to run this project](#how-to-run-this-project)
+- [Dissertation](#dissertation)
 - [Contact](#contact)
 
 ## Introduction
