@@ -19,6 +19,9 @@ import { auth, database, set, ref } from "../firebase";
 // DataTimePicker
 import DateTimePicker from "@react-native-community/datetimepicker";
 
+// UUID
+import uuid from "react-native-uuid";
+
 // Variables for times
 let isStartTime = false;
 let isEndTime = false;
@@ -90,13 +93,19 @@ const AddTimetableScreen = () => {
 
   // Save timetable details under user's id
   const saveClassToDatabase = () => {
-    // Save under classes under user uid
-    set(ref(database, "classes/" + uid), {
+    // Create a new class ID
+    const classUID = uuid.v4();
+
+    // Save under classes under user and class UID
+    set(ref(database, "classes/" + uid + "/" + classUID), {
+      classId: classUID,
       className: name,
       classStartTime: startTime,
       classEndTime: endTime,
       classDay: day,
     });
+
+    console.log("Class saved with ID: " + classUID);
 
     // Navigate back to Timetable Screen
     navigation.navigate("HomeTabs", { screen: "Timetable" });
