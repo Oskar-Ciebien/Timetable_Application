@@ -79,8 +79,16 @@ const LoginScreen = () => {
         const errorMessage = error.message;
         console.log("Error: ", error.code, error.message);
 
-        // Display error message to user
-        alert(error.message);
+        // Display different error messages to the user
+        if (errorCode == "auth/user-not-found") {
+          alert(
+            "There is no such email or password associated with an existing account."
+          );
+        } else if (errorCode == "auth/invalid-email") {
+          alert("Please provide a real email address.");
+        } else {
+          alert(errorMessage);
+        }
       });
   };
 
