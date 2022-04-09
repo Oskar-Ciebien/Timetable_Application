@@ -42,6 +42,13 @@ const ChangePasswordScreen = () => {
         // An error ocurred
         const errorCode = error.code;
         const errorMessage = error.message;
+
+        // Alert about authentication error
+        alert(
+          "There was a problem with Authentication. Please try again",
+          error.message
+        );
+
         console.log("Error with re-authentication: ", errorCode, errorMessage);
       });
   };
@@ -62,6 +69,21 @@ const ChangePasswordScreen = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log("Error with changing password: ", errorCode, errorMessage);
+
+        // Display different error messages to the user
+        if (errorCode == "auth/user-not-found") {
+          alert(
+            "There is no such email or password associated with an existing account."
+          );
+        } else if (errorCode == "auth/invalid-email") {
+          alert("Please provide a real email address.");
+        } else if (errorCode == "auth/invalid-password") {
+          alert("Please provide a password with at least 6 characters.");
+        } else if (errorCode == "auth/weak-password") {
+          alert("Please provide a password with at least 6 characters.");
+        } else {
+          alert(errorMessage);
+        }
       });
   };
 
