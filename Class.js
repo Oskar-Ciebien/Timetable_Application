@@ -14,6 +14,8 @@ import { auth } from "./firebase.js";
 
 import TimetableScreen from "./screens/TimetableScreen.js";
 
+// Firebase codehttps://github.com/Chensokheng/crud-todo-app
+
 export default function Class({ todo }) {
   // Remove a Class
   const removeClass = (todo) => {
@@ -28,7 +30,6 @@ export default function Class({ todo }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <ScrollView> */}
       <View style={styles.classTable}>
         {/* <Text style={styles.class}>{todo.classId}</Text> */}
         <Text style={styles.class}>{todo.className}</Text>
@@ -40,32 +41,43 @@ export default function Class({ todo }) {
           <Text>Delete</Text>
         </TouchableOpacity>
       </View>
-      {/* </ScrollView> */}
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  scrollView: {
+    backgroundColor: "yellow",
+    flexGrow: 1,
   },
   classTable: {
-    paddingBottom: 20,
-    justifyContent: "center",
-    alignItems: "center",
+    marginBottom: 40,
   },
   class: {
-    padding: 2,
+    flexGrow: 1,
+    justifyContent: "space-between",
+
     fontFamily: "monospace",
     fontSize: 16,
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
+    textAlign: "center",
   },
   deleteButton: {
+    marginTop: 10,
+
     borderRadius: 30,
     borderColor: "black",
     borderWidth: 2,
     padding: 10,
-    marginTop: 10,
     backgroundColor: "red",
+    textAlign: "center",
+    alignItems: "center",
   },
 });

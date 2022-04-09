@@ -6,6 +6,7 @@ import {
   Image,
   View,
   Button,
+  ScrollView,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 
@@ -86,13 +87,15 @@ const TimetableScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View>
-        {todoList ? (
-          todoList.map((todo, index) => <Class todo={todo} key={index} />)
-        ) : (
-          <Text>""</Text>
-        )}
-      </View>
+      <ScrollView style={{ flex: 1 }}>
+        <View>
+          {todoList ? (
+            todoList.map((todo, index) => <Class todo={todo} key={index} />)
+          ) : (
+            <Text>""</Text>
+          )}
+        </View>
+      </ScrollView>
 
       <TouchableOpacity onPress={addTimetable} style={styles.addButton}>
         <Image
@@ -112,6 +115,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    paddingHorizontal: 40,
   },
   addButton: {
     position: "absolute",
