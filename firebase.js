@@ -13,6 +13,8 @@ import {
   child,
   query,
   orderByChild,
+  remove,
+  removeValue,
 } from "firebase/database";
 
 // Firebase configuration
@@ -45,4 +47,16 @@ onAuthStateChanged(auth, (user) => {
   // Do other things
 });
 
-export { auth, database, ref, set, onValue, get, child, query, orderByChild };
+export {
+  auth,
+  database,
+  ref,
+  set,
+  onValue,
+  get,
+  child,
+  query,
+  orderByChild,
+  remove,
+  removeValue,
+};
