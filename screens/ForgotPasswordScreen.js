@@ -31,6 +31,15 @@ const ForgotPasswordScreen = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log("Error: ", errorCode, errorMessage);
+
+        // Display different error messages to the user
+        if (errorCode == "auth/user-not-found") {
+          alert("There is no such email associated with an existing account.");
+        } else if (errorCode == "auth/invalid-email") {
+          alert("Please provide a real email address.");
+        } else {
+          alert(errorMessage);
+        }
       });
   };
 
