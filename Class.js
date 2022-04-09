@@ -3,32 +3,18 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  Image,
   View,
-  Button,
   SafeAreaView,
   ScrollView,
 } from "react-native";
 import React from "react";
 
 // Firebase
-import {
-  database,
-  auth,
-  ref,
-  onValue,
-  query,
-  orderByChild,
-  remove,
-  child,
-} from "./firebase.js";
+import { auth } from "./firebase.js";
 
 import TimetableScreen from "./screens/TimetableScreen.js";
 
 export default function Class({ todo }) {
-  // Current User
-  const user = auth.currentUser;
-
   // Remove a Class
   const removeClass = (todo) => {
     console.log("Pressed Remove Class");
