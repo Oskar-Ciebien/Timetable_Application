@@ -61,8 +61,18 @@ const LoginScreen = () => {
         const errorMessage = error.message;
         console.log("Error: ", errorCode, errorMessage);
 
-        // Display error message to user
-        alert(error.message);
+        // Display different error messages to the user
+        if (errorCode == "auth/email-already-exists") {
+          alert("This email is already in use.");
+        } else if (errorCode == "auth/invalid-email") {
+          alert("Please provide a real email address.");
+        } else if (errorCode == "auth/invalid-password") {
+          alert("Please provide a password with at least 6 characters.");
+        } else if (errorCode == "auth/weak-password") {
+          alert("Please provide a password with at least 6 characters.");
+        } else {
+          alert(errorMessage);
+        }
       });
   };
 
@@ -86,6 +96,10 @@ const LoginScreen = () => {
           );
         } else if (errorCode == "auth/invalid-email") {
           alert("Please provide a real email address.");
+        } else if (errorCode == "auth/invalid-password") {
+          alert("Please provide a password with at least 6 characters.");
+        } else if (errorCode == "auth/weak-password") {
+          alert("Please provide a password with at least 6 characters.");
         } else {
           alert(errorMessage);
         }
