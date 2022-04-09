@@ -55,8 +55,11 @@ const DeleteAccountScreen = () => {
 
         console.log("Error with re-authentication: ", errorCode, errorMessage);
 
-        // Alert about authentication
-        alert("Problem with Authentication", error.message);
+        // Alert about authentication error
+        alert(
+          "There was a problem with Authentication. Please try again",
+          error.message
+        );
 
         userAuthenticated = false;
       });
@@ -95,6 +98,15 @@ const DeleteAccountScreen = () => {
           const errorCode = error.code;
           const errorMessage = error.message;
           console.log("Error: ", errorCode, errorMessage);
+
+          // Display different error messages to the user
+          if (errorCode == "auth/invalid-password") {
+            alert("Please provide a password with at least 6 characters.");
+          } else if (errorCode == "auth/weak-password") {
+            alert("Please provide a password with at least 6 characters.");
+          } else {
+            alert(errorMessage);
+          }
         });
     } else {
       console.log("Account has not been deleted.");
