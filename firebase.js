@@ -4,7 +4,16 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { getDatabase, ref, set, onValue, get, child } from "firebase/database";
+import {
+  getDatabase,
+  ref,
+  set,
+  onValue,
+  get,
+  child,
+  query,
+  orderByChild,
+} from "firebase/database";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -36,4 +45,4 @@ onAuthStateChanged(auth, (user) => {
   // Do other things
 });
 
-export { auth, database, ref, set, onValue, get, child };
+export { auth, database, ref, set, onValue, get, child, query, orderByChild };
