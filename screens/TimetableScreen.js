@@ -22,7 +22,7 @@ import Class from "../Class.js";
 const TimetableScreen = () => {
   const navigation = useNavigation();
 
-  const [todoList, setTodoList] = useState();
+  const [classList, setclassList] = useState();
 
   const user = auth.currentUser;
 
@@ -33,7 +33,7 @@ const TimetableScreen = () => {
   let day = "";
   let iD = "";
 
-  // Firebase Display code adapted and modified from: https://github.com/Chensokheng/crud-todo-app
+  // Firebase Display code adapted and modified from: https://github.com/Chensokheng/crud-item-app
   useEffect(() => {
     const classRealTimeRefAllClasses = query(
       ref(database, "classes/" + user.uid),
@@ -43,17 +43,17 @@ const TimetableScreen = () => {
     onValue(
       classRealTimeRefAllClasses,
       (snapshot) => {
-        const todos = snapshot.val();
-        const todoList = [];
+        const classes = snapshot.val();
+        const classList = [];
 
-        for (let id in todos) {
-          // todoList.push(todos[id]);
-          todoList.push({ id, ...todos[id] });
+        for (let id in classes) {
+          // classList.push(classes[id]);
+          classList.push({ id, ...classes[id] });
         }
 
-        setTodoList(todoList);
+        setclassList(classList);
 
-        console.log("List: " + todoList);
+        console.log("List: " + classList);
 
         snapshot.forEach((childSnapshot) => {
           snapshot.hasChildren;
@@ -88,8 +88,8 @@ const TimetableScreen = () => {
       <ScrollView style={{ flex: 1 }}>
         {/* Send Map to Class.js */}
         <View>
-          {todoList ? (
-            todoList.map((todo, index) => <Class todo={todo} key={index} />)
+          {classList ? (
+            classList.map((item, index) => <Class item={item} key={index} />)
           ) : (
             /* Otherwise Display Nothing */
             <Text>""</Text>
