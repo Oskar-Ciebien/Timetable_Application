@@ -249,7 +249,7 @@ const TimetableScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Timetable Screen</Text>
+      {/* <Text>Timetable Screen</Text> */}
 
       {/* <Text>{`${data}`}</Text>
       <Text>{`${email}`}</Text>

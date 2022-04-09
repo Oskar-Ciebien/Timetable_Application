@@ -7,6 +7,7 @@ import {
   View,
   Button,
   SafeAreaView,
+  ScrollView,
 } from "react-native";
 import React from "react";
 
@@ -24,7 +25,7 @@ import {
 
 import TimetableScreen from "./screens/TimetableScreen.js";
 
-const Class = ({ todo }) => {
+export default function Class({ todo }) {
   // Current User
   const user = auth.currentUser;
 
@@ -41,26 +42,44 @@ const Class = ({ todo }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.classes}>
-        <Text>{todo.className}</Text>
-        <Text>{todo.classDay}</Text>
-        <Text>{todo.classStartTime}</Text>
-        <Text>{todo.classEndTime}</Text>
-        <TouchableOpacity onPress={removeClass}>
+      {/* <ScrollView> */}
+      <View style={styles.classTable}>
+        {/* <Text style={styles.class}>{todo.classId}</Text> */}
+        <Text style={styles.class}>{todo.className}</Text>
+        <Text style={styles.class}>{todo.classDay}</Text>
+        <Text style={styles.class}>{todo.classStartTime}</Text>
+        <Text style={styles.class}>{todo.classEndTime}</Text>
+
+        <TouchableOpacity onPress={removeClass} style={styles.deleteButton}>
           <Text>Delete</Text>
         </TouchableOpacity>
       </View>
+      {/* </ScrollView> */}
     </SafeAreaView>
   );
-};
-
-export default Class;
+}
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
-  classes: {},
+  classTable: {
+    paddingBottom: 20,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  class: {
+    padding: 2,
+    fontFamily: "monospace",
+    fontSize: 16,
+  },
+  deleteButton: {
+    borderRadius: 30,
+    borderColor: "black",
+    borderWidth: 2,
+    padding: 10,
+    marginTop: 10,
+    backgroundColor: "red",
+  },
 });
