@@ -68,6 +68,7 @@ const ChangePasswordScreen = () => {
         // An error ocurred
         const errorCode = error.code;
         const errorMessage = error.message;
+
         console.log("Error with changing password: ", errorCode, errorMessage);
 
         // Display different error messages to the user
