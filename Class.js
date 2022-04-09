@@ -1,20 +1,15 @@
-// Imports
 import {
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
   SafeAreaView,
-  ScrollView,
 } from "react-native";
 import React from "react";
 
-// Firebase
-import { auth } from "./firebase.js";
-
 import TimetableScreen from "./screens/TimetableScreen.js";
 
-// Firebase codehttps://github.com/Chensokheng/crud-todo-app
+// Firebase Display code adapted and modified from: https://github.com/Chensokheng/crud-todo-app
 
 export default function Class({ todo }) {
   // Remove a Class

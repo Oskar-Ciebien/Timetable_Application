@@ -1,9 +1,6 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-
-// Navigation
-import { useNavigation } from "@react-navigation/core";
 
 // Firebase
 import { auth } from "../firebase";
@@ -11,12 +8,14 @@ import { auth } from "../firebase";
 const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
+      {/* Greeting */}
       <View style={styles.greetingBox}>
         <Text style={(styles.text, styles.greetingText)}>
           Welcome: {auth.currentUser?.email}
         </Text>
       </View>
 
+      {/* Guidance Box */}
       <View style={styles.guidanceBox}>
         <Text style={styles.text}>
           Head over to Timetable to add or to see your classes.
@@ -28,10 +27,12 @@ const HomeScreen = () => {
         </Text>
       </View>
 
-      <View style={styles.text}>
+      {/* Appreciation Box */}
+      <View style={styles.authorBox}>
         <Text style={styles.text}>Thank you for using this application.</Text>
       </View>
 
+      {/* Author Box */}
       <View style={styles.authorBox}>
         <Text style={styles.text}>
           This application has been developed by: Oskar Ciebien

@@ -16,7 +16,6 @@ import { auth } from "../firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
 
 const ForgotPasswordScreen = () => {
-  // Navigation
   const navigation = useNavigation();
 
   const [email, setEmail] = useState("");
@@ -27,17 +26,15 @@ const ForgotPasswordScreen = () => {
       .then(() => {
         // Password reset email sent!
         console.log("Password reset email has been sent to: ", email);
-        // ..
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log("Error: ", errorCode, errorMessage);
-        // ..
       });
   };
 
-  // GoBack
+  // Go Back to Settings
   const goBack = () => {
     console.log("Pressed Go Back");
     navigation.navigate("HomeTabs", { screen: "Settings" });
@@ -45,10 +42,12 @@ const ForgotPasswordScreen = () => {
 
   return (
     <KeyboardAvoidingView style={styles.container}>
+      {/* Top Heading */}
       <View style={styles.textContainer}>
         <Text style={styles.text}>Your email: {auth.currentUser?.email}</Text>
       </View>
 
+      {/* Current Email */}
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Enter Your Email"
@@ -58,12 +57,14 @@ const ForgotPasswordScreen = () => {
         />
       </View>
 
+      {/* Send Reset Email */}
       <TouchableOpacity onPress={forgotPassword} style={styles.buttonContainer}>
         <View>
           <Text style={styles.buttonText}>Send Reset Email</Text>
         </View>
       </TouchableOpacity>
 
+      {/* Go Back */}
       <TouchableOpacity onPress={goBack} style={styles.backButton}>
         <View>
           <Text style={styles.backButtonText}>Go Back</Text>

@@ -7,11 +7,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/core";
 
 // Firebase
-import { auth } from "../firebase";
-import { signOut } from "firebase/auth";
+import { auth, signOut } from "../firebase";
 
 const SettingsScreen = () => {
-  // Navigation
   const navigation = useNavigation();
 
   const [isEnabled, setIsEnabled] = useState(false);
@@ -20,7 +18,7 @@ const SettingsScreen = () => {
   const darkMode = () => {
     console.log("Pressed Dark Mode");
 
-    // Switch between enabled options
+    // Switch between enabled and disabled
     setIsEnabled((previously) => !previously);
   };
 
@@ -53,11 +51,10 @@ const SettingsScreen = () => {
     console.log("Pressed Log Out");
     signOut(auth)
       .then(() => {
-        // Sign-out successful.
+        // Log Out successful.
         navigation.replace("Login");
       })
       .catch((error) => {
-        // An error happened.
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log("Error: ", error.code, error.message);
@@ -66,6 +63,7 @@ const SettingsScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* Dark Mode */}
       <View style={styles.menu}>
         <View style={styles.menuItem}>
           <Text style={styles.menuText}>Dark Mode</Text>
@@ -79,6 +77,7 @@ const SettingsScreen = () => {
         </View>
       </View>
 
+      {/* Change Password */}
       <TouchableOpacity onPress={changePassword}>
         <View style={styles.menu}>
           <View style={styles.menuItem}>
@@ -87,6 +86,7 @@ const SettingsScreen = () => {
         </View>
       </TouchableOpacity>
 
+      {/* Change Email */}
       <TouchableOpacity onPress={changeEmail}>
         <View style={styles.menu}>
           <View style={styles.menuItem}>
@@ -95,6 +95,7 @@ const SettingsScreen = () => {
         </View>
       </TouchableOpacity>
 
+      {/* Forgot Password */}
       <TouchableOpacity onPress={forgotPassword}>
         <View style={styles.menu}>
           <View style={styles.menuItem}>
@@ -103,6 +104,7 @@ const SettingsScreen = () => {
         </View>
       </TouchableOpacity>
 
+      {/* Delete Account */}
       <TouchableOpacity onPress={deleteAccount}>
         <View style={styles.menu}>
           <View style={styles.menuItem}>
@@ -113,6 +115,7 @@ const SettingsScreen = () => {
         </View>
       </TouchableOpacity>
 
+      {/* Log Out */}
       <View style={styles.logOutArea}>
         <TouchableOpacity onPress={logOut} style={styles.logOutButton}>
           <Text style={styles.logOutButtonText}>Log out</Text>

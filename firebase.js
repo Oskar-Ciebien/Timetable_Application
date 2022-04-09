@@ -1,9 +1,18 @@
-// Imports
 import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+// Auth
+import {
+  getAuth,
+  onAuthStateChanged,
+  updateEmail,
+  reauthenticateWithCredential,
+  EmailAuthProvider,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
+
+// Database
 import {
   getDatabase,
   ref,
@@ -41,10 +50,8 @@ const database = getDatabase();
 // Listen for authentication state to change.
 onAuthStateChanged(auth, (user) => {
   if (user != null) {
-    console.log("We are authenticated now!");
+    console.log("User has been authenticated!");
   }
-
-  // Do other things
 });
 
 export {
@@ -59,4 +66,10 @@ export {
   orderByChild,
   remove,
   removeValue,
+  updateEmail,
+  reauthenticateWithCredential,
+  EmailAuthProvider,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
 };

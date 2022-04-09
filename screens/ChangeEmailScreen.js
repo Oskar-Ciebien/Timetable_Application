@@ -12,16 +12,15 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 
 // Firebase
-import { auth } from "../firebase";
-import { updateEmail, reauthenticateWithCredential } from "firebase/auth";
-import { EmailAuthProvider } from "firebase/auth";
-//import * as firebase from "firebase";
+import {
+  auth,
+  updateEmail,
+  reauthenticateWithCredential,
+  EmailAuthProvider,
+} from "../firebase";
 
 const ChangeEmailScreen = () => {
-  // Navigation
   const navigation = useNavigation();
-
-  // User - Firebase
   const user = auth.currentUser;
 
   const [email, setEmail] = useState("");
@@ -41,34 +40,32 @@ const ChangeEmailScreen = () => {
         console.log("Authentication passed, user: ", credential);
       })
       .catch((error) => {
-        // An error ocurred
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log("Error with re-authentication: ", errorCode, errorMessage);
-        // ...
       });
   };
 
   // Change Email
   const changeEmail = () => {
     console.log(pass);
+
     reauthenticate(pass);
+
     updateEmail(auth.currentUser, email)
       .then(() => {
         // Email updated!
         console.log("Email has been changed to: ", email);
-        // ...
       })
       .catch((error) => {
         // An error occurred
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log("Error with changing email: ", errorCode, errorMessage);
-        // ...
       });
   };
 
-  // Go Back
+  // Go Back to Settings Screen
   const goBack = () => {
     console.log("Pressed Go Back");
     navigation.navigate("HomeTabs", { screen: "Settings" });
@@ -76,12 +73,14 @@ const ChangeEmailScreen = () => {
 
   return (
     <KeyboardAvoidingView style={styles.container}>
+      {/* Top Heading */}
       <View style={styles.textContainer}>
         <Text style={styles.text}>
           Your current Email: {auth.currentUser?.email}
         </Text>
       </View>
 
+      {/* New Email */}
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="New Email"
@@ -91,6 +90,7 @@ const ChangeEmailScreen = () => {
         />
       </View>
 
+      {/* Password */}
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Your Password"
@@ -101,12 +101,14 @@ const ChangeEmailScreen = () => {
         />
       </View>
 
+      {/* Submit */}
       <TouchableOpacity onPress={changeEmail} style={styles.buttonContainer}>
         <View>
           <Text style={styles.buttonText}>Change Email</Text>
         </View>
       </TouchableOpacity>
 
+      {/* Move Back */}
       <TouchableOpacity onPress={goBack} style={styles.backButton}>
         <View>
           <Text style={styles.backButtonText}>Go Back</Text>

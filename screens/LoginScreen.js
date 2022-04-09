@@ -1,4 +1,3 @@
-// Imports
 import {
   KeyboardAvoidingView,
   StyleSheet,
@@ -13,12 +12,15 @@ import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 
 // Firebase
-import { auth, database, ref, set } from "../firebase";
 import {
+  auth,
+  database,
+  ref,
+  set,
   onAuthStateChanged,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-} from "firebase/auth";
+} from "../firebase";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -29,11 +31,10 @@ const LoginScreen = () => {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
+        // User logged in
         const uid = user.uid;
 
-        // Save user under users by userid
+        // Save user under users in database
         set(ref(database, "users/" + uid), {
           // Save the users email
           email: user.email,
@@ -41,10 +42,8 @@ const LoginScreen = () => {
 
         // Move to home screen
         navigation.replace("HomeTabs");
-        // ...
       } else {
-        // User is signed out
-        // ...
+        // User is logged out
       }
     });
   }, []);
@@ -53,19 +52,17 @@ const LoginScreen = () => {
   const registerUser = () => {
     createUserWithEmailAndPassword(auth, email, pass)
       .then((userCredential) => {
-        // Register in
+        // Register user
         const user = userCredential.user;
         console.log("Register: ", user.email, user.pass);
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log("Error: ", errorCode, errorMessage);
 
-        // Display to user
+        // Display error message to user
         alert(error.message);
-        // ..
       });
   };
 
@@ -76,14 +73,13 @@ const LoginScreen = () => {
         // Logged in
         const user = userCredential.user;
         console.log("Login: ", user.email, user.pass);
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log("Error: ", error.code, error.message);
 
-        // Display to user
+        // Display error message to user
         alert(error.message);
       });
   };
@@ -96,6 +92,7 @@ const LoginScreen = () => {
 
   return (
     <KeyboardAvoidingView style={styles.container}>
+      {/* Email */}
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Email"
@@ -103,6 +100,8 @@ const LoginScreen = () => {
           onChangeText={(text) => setEmail(text)}
           style={styles.input}
         />
+
+        {/* Password */}
         <TextInput
           placeholder="Password"
           value={pass}
@@ -112,11 +111,13 @@ const LoginScreen = () => {
         />
       </View>
 
+      {/* Login Button */}
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={loginUser} style={styles.button}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
 
+        {/* Register Button */}
         <TouchableOpacity
           onPress={registerUser}
           style={[styles.button, styles.buttonOutline]}
@@ -124,6 +125,7 @@ const LoginScreen = () => {
           <Text style={styles.buttonOutlineText}>Register</Text>
         </TouchableOpacity>
 
+        {/* Forgot Password Button */}
         <TouchableOpacity onPress={forgotPassword} style={[styles.forgotText]}>
           <Text>Forgot Password?</Text>
         </TouchableOpacity>

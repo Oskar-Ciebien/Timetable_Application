@@ -29,10 +29,8 @@ let startTime = "";
 let endTime = "";
 
 const AddTimetableScreen = () => {
-  // Navigation
   const navigation = useNavigation();
 
-  // Time/Date Picker Variables
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState("time");
   const [show, setShow] = useState(false);
@@ -53,20 +51,17 @@ const AddTimetableScreen = () => {
       // Set startTime to the hours and minutes picked by user
       startTime = currentDate.getHours() + ":" + currentDate.getMinutes();
 
-      // Set boolean back to false
       isStartTime = false;
     } else if (isEndTime === true) {
       // Set endTime to the hours and minutes picked by user
       endTime = currentDate.getHours() + ":" + currentDate.getMinutes();
 
-      // Set boolean back to false
       isEndTime = false;
     }
   };
 
   // showStartTimePicker - Time/Date Picker
   const showStartTimePicker = () => {
-    // Set boolean to true
     isStartTime = true;
 
     // Open the clock window
@@ -76,7 +71,6 @@ const AddTimetableScreen = () => {
 
   //showEndTimePicker - Time/Date Picker
   const showEndTimePicker = () => {
-    // Set boolean to true
     isEndTime = true;
 
     // Open the clock window
@@ -88,7 +82,6 @@ const AddTimetableScreen = () => {
   const [name, setName] = useState("");
   const [day, setDay] = useState("");
 
-  // UID of current user
   const uid = auth.currentUser.uid;
 
   // Save timetable details under user's id
@@ -107,11 +100,10 @@ const AddTimetableScreen = () => {
 
     console.log("Class saved with ID: " + classUID);
 
-    // Navigate back to Timetable Screen
     navigation.navigate("HomeTabs", { screen: "Timetable" });
   };
 
-  // Back to Home Tabs
+  // Back to Timetable
   const goTimetable = () => {
     console.log("Pressed Go Timetable Tabs");
     navigation.navigate("HomeTabs", { screen: "Timetable" });
@@ -119,12 +111,14 @@ const AddTimetableScreen = () => {
 
   return (
     <KeyboardAvoidingView style={styles.container}>
+      {/* Heading at the Top of Screen */}
       <View style={styles.textContainer}>
         <Text style={styles.text}>Adding new Class</Text>
         <Text style={styles.text}>Your email: {auth.currentUser?.email}</Text>
       </View>
 
       <View style={styles.textContainer}>
+        {/* Name of Class Input */}
         <Text>Name:</Text>
         <TextInput
           placeholder="Name of Class"
@@ -133,6 +127,7 @@ const AddTimetableScreen = () => {
           style={styles.input}
         />
 
+        {/* Class Day Picker */}
         <Picker
           selectedValue={day}
           style={styles.input}
@@ -147,6 +142,7 @@ const AddTimetableScreen = () => {
           <Picker.Item label="Sunday" value="Sunday" />
         </Picker>
 
+        {/* Class Start Time Picker */}
         <Text>Start Time : {startTime}</Text>
         <Button onPress={showStartTimePicker} title="Start Time!" />
 
@@ -160,8 +156,8 @@ const AddTimetableScreen = () => {
           />
         )}
 
+        {/* Class End Time Picker */}
         <Text>End Time : {endTime}</Text>
-
         <Button onPress={showEndTimePicker} title="End Time!" />
 
         {show && (
@@ -175,6 +171,7 @@ const AddTimetableScreen = () => {
         )}
       </View>
 
+      {/* Add Class Button */}
       <TouchableOpacity
         onPress={saveClassToDatabase}
         style={styles.submitButton}
@@ -186,6 +183,7 @@ const AddTimetableScreen = () => {
         </View>
       </TouchableOpacity>
 
+      {/* Go Back Button */}
       <TouchableOpacity onPress={goTimetable} style={styles.timetableButton}>
         <View>
           <Text style={styles.timetableButtonText}>Go Back</Text>

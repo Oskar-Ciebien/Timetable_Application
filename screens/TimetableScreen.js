@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   Image,
   View,
-  Button,
   ScrollView,
 } from "react-native";
 import React, { useState, useEffect } from "react";
@@ -17,25 +16,24 @@ import { SafeAreaView } from "react-native-safe-area-context";
 // Firebase
 import { database, auth, ref, onValue, query, orderByChild } from "../firebase";
 
-// Class
+// Class Import
 import Class from "../Class.js";
 
 const TimetableScreen = () => {
-  // Navigation
   const navigation = useNavigation();
 
-  //
   const [todoList, setTodoList] = useState();
 
-  // Current User
   const user = auth.currentUser;
 
+  // Database Variables
   let name = "";
   let startTime = "";
   let endTime = "";
   let day = "";
   let iD = "";
 
+  // Firebase Display code adapted and modified from: https://github.com/Chensokheng/crud-todo-app
   useEffect(() => {
     const classRealTimeRefAllClasses = query(
       ref(database, "classes/" + user.uid),
@@ -88,15 +86,18 @@ const TimetableScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={{ flex: 1 }}>
+        {/* Send Map to Class.js */}
         <View>
           {todoList ? (
             todoList.map((todo, index) => <Class todo={todo} key={index} />)
           ) : (
+            /* Otherwise Display Nothing */
             <Text>""</Text>
           )}
         </View>
       </ScrollView>
 
+      {/* Add To Timetable */}
       <TouchableOpacity onPress={addTimetable} style={styles.addButton}>
         <Image
           source={require(".././assets/icons/plus_icon.png")}

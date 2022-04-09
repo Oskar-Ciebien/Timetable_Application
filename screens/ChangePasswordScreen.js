@@ -17,10 +17,8 @@ import { updatePassword, reauthenticateWithCredential } from "firebase/auth";
 import { EmailAuthProvider } from "firebase/auth";
 
 const ChangePasswordScreen = () => {
-  // Navigation
   const navigation = useNavigation();
 
-  // User - Firebase
   const user = auth.currentUser;
 
   const [email, setEmail] = useState("");
@@ -45,13 +43,13 @@ const ChangePasswordScreen = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log("Error with re-authentication: ", errorCode, errorMessage);
-        // ...
       });
   };
 
   // Change Password
   const changePassword = () => {
     console.log(oldPass);
+
     reauthenticate(oldPass);
 
     updatePassword(auth.currentUser, newPass)
@@ -64,11 +62,10 @@ const ChangePasswordScreen = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log("Error with changing password: ", errorCode, errorMessage);
-        // ...
       });
   };
 
-  // Go Back
+  // Go Back to Settings
   const goBack = () => {
     console.log("Pressed Go Back");
     navigation.navigate("HomeTabs", { screen: "Settings" });
@@ -80,6 +77,7 @@ const ChangePasswordScreen = () => {
         <Text style={styles.text}>Your email: {auth.currentUser?.email}</Text>
       </View>
 
+      {/* Current Email */}
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Enter Your Email"
@@ -89,6 +87,7 @@ const ChangePasswordScreen = () => {
         />
       </View>
 
+      {/* Current Password */}
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Enter Current Password"
@@ -99,6 +98,7 @@ const ChangePasswordScreen = () => {
         />
       </View>
 
+      {/* New Password */}
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Enter New Password"
@@ -109,12 +109,14 @@ const ChangePasswordScreen = () => {
         />
       </View>
 
+      {/* Submit */}
       <TouchableOpacity onPress={changePassword} style={styles.buttonContainer}>
         <View>
           <Text style={styles.buttonText}>Change Password</Text>
         </View>
       </TouchableOpacity>
 
+      {/* Move Back */}
       <TouchableOpacity onPress={goBack} style={styles.backButton}>
         <View>
           <Text style={styles.backButtonText}>Go Back</Text>

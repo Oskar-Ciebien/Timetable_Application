@@ -6,7 +6,6 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Alert,
-  Button,
 } from "react-native";
 import React, { useState } from "react";
 
@@ -19,7 +18,6 @@ import { deleteUser, reauthenticateWithCredential } from "firebase/auth";
 import { EmailAuthProvider } from "firebase/auth";
 
 const DeleteAccountScreen = () => {
-  // Navigation
   const navigation = useNavigation();
 
   const user = auth.currentUser;
@@ -61,7 +59,6 @@ const DeleteAccountScreen = () => {
         alert("Problem with Authentication", error.message);
 
         userAuthenticated = false;
-        // ...
       });
   };
 
@@ -79,7 +76,6 @@ const DeleteAccountScreen = () => {
           console.log("Deleted Account - Successful");
 
           // Remove user from database
-          
 
           // database.ref("/users/" + user.uid).remove();
 
@@ -89,6 +85,8 @@ const DeleteAccountScreen = () => {
           //   .ref("/users/" + uid)
           //   .remove();
 
+          console.log("Deleted User's Timetable - Successful");
+
           // Navigate back to Login Screen
           navigation.replace("Login");
         })
@@ -97,17 +95,18 @@ const DeleteAccountScreen = () => {
           const errorCode = error.code;
           const errorMessage = error.message;
           console.log("Error: ", errorCode, errorMessage);
-          // ...
         });
     } else {
       console.log("Account has not been deleted.");
     }
   };
 
+  // Reauthenticate
   const checkAccount = () => {
     reauthenticate(pass);
   };
 
+  // User Confirmation on Deletion of Account
   const confirmDelete = () => {
     Alert.alert("Are you sure?", "Should we delete your account?", [
       {
@@ -124,7 +123,7 @@ const DeleteAccountScreen = () => {
     ]);
   };
 
-  // Go Back
+  // Go Back to Settings
   const goBack = () => {
     console.log("Pressed Go Back");
     navigation.navigate("HomeTabs", { screen: "Settings" });
@@ -132,11 +131,13 @@ const DeleteAccountScreen = () => {
 
   return (
     <KeyboardAvoidingView style={styles.container}>
+      {/* Top Heading */}
       <View>
         <Text style={styles.text}>Delete Account</Text>
         <Text style={styles.text}>Your Email: {auth.currentUser?.email}</Text>
       </View>
 
+      {/* Current Password */}
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Enter Current Password"
@@ -147,12 +148,14 @@ const DeleteAccountScreen = () => {
         />
       </View>
 
+      {/* Confirm */}
       <TouchableOpacity onPress={checkAccount} style={styles.buttonContainer}>
         <View>
           <Text style={styles.buttonText}>Confirm</Text>
         </View>
       </TouchableOpacity>
 
+      {/* Go Back */}
       <TouchableOpacity onPress={goBack} style={styles.backButton}>
         <View>
           <Text style={styles.backButtonText}>Go Back</Text>
