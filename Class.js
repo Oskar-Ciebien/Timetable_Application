@@ -7,20 +7,29 @@ import {
 } from "react-native";
 import React from "react";
 
-import TimetableScreen from "./screens/TimetableScreen.js";
+// Firebase
+import { auth, database, ref, remove } from "./firebase";
 
 // Firebase Display code adapted and modified from: https://github.com/Chensokheng/crud-item-app
 
 export default function Class({ item }) {
+  const user = auth.currentUser;
+
   // Remove a Class
-  const removeClass = (item) => {
+  const removeClass = () => {
     console.log("Pressed Remove Class");
 
-    // console.log(item);
+    console.log("Item ID: " + item.id);
 
-    // const classRef = ref(database, "classes/" + user.uid).child(item.id);
+    // Class Reference
+    const classRef = ref(database, "classes/" + user.uid + "/" + item.id);
 
-    // classRef.remove();
+    console.log("Class Reference: " + classRef);
+
+    // Remove class from database
+    remove(classRef);
+
+    console.log("Class has been removed!");
   };
 
   return (
