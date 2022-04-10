@@ -13,9 +13,15 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 
 // Firebase
-import { auth, database, ref } from "../firebase";
-import { deleteUser, reauthenticateWithCredential } from "firebase/auth";
-import { EmailAuthProvider } from "firebase/auth";
+import {
+  auth,
+  database,
+  ref,
+  remove,
+  EmailAuthProvider,
+  reauthenticateWithCredential,
+  deleteUser,
+} from "../firebase";
 
 const DeleteAccountScreen = () => {
   const navigation = useNavigation();
@@ -65,6 +71,7 @@ const DeleteAccountScreen = () => {
       });
   };
 
+  // Remove user account and details from database
   const deleteAccount = () => {
     console.log(pass);
 
@@ -75,18 +82,19 @@ const DeleteAccountScreen = () => {
     if (userAuthenticated == true) {
       deleteUser(user)
         .then(async () => {
-          // User deleted.
-          console.log("Deleted Account - Successful");
+          // Class Reference
+          const userRef = ref(database, "users/" + user.uid);
 
           // Remove user from database
+          remove(userRef);
 
-          // database.ref("/users/" + user.uid).remove();
+          console.log("Deleted Account - Successful");
 
-          // ref(database, "users/" + user.uid).remove();
+          // Class Reference
+          const classRef = ref(database, "classes/" + user.uid + "/");
 
-          // await database()
-          //   .ref("/users/" + uid)
-          //   .remove();
+          // Remove user's classes from database
+          remove(classRef);
 
           console.log("Deleted User's Timetable - Successful");
 
