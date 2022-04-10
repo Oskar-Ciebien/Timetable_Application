@@ -32,6 +32,7 @@ export default function Class({ item }) {
     if (name != "") {
       console.log("New Class Name - " + name);
 
+      // Update In Database
       update(ref(database, "classes/" + user.uid + "/" + item.id), {
         className: name,
       });
@@ -45,6 +46,7 @@ export default function Class({ item }) {
     if (day != "") {
       console.log("New Class Day - " + day);
 
+      // Update In Database
       update(ref(database, "classes/" + user.uid + "/" + item.id), {
         classDay: day,
       });
@@ -58,6 +60,7 @@ export default function Class({ item }) {
     if (startTime != "") {
       console.log("New Class Start Time - " + startTime);
 
+      // Update In Database
       update(ref(database, "classes/" + user.uid + "/" + item.id), {
         classStartTime: startTime,
       });
