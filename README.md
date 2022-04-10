@@ -14,6 +14,7 @@
 - [Requirements](#requirements)
 - [How to run this project](#how-to-run-this-project)
 - [Dissertation](#dissertation)
+- [Screencast](#screencast)
 - [Contact](#contact)
 
 ## Introduction
@@ -58,6 +59,12 @@ In order to run this project, please follow the steps outlined below:
 There are several topics covered in the dissertation of this project. This includes the technologies used, the planning, design of the system etc.
 
 The Dissertation of this project can be found in a folder called **Documents**. Click [here](Documents/Dissertation.pdf) to get to the PDF file.
+
+## Screencast
+
+The screencast of this project showcases all of the functionalities of the application developed.
+
+The Screencast can be accessed by going into the folder called **Documents**. Click [here](Documents/FinalScreencast.mp4) to get to the screencast quicker.
 
 ## Contact
 
