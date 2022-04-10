@@ -16,6 +16,7 @@ import {
   getRedirectResult,
   signInWithRedirect,
   deleteUser,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 
 // Database
@@ -75,6 +76,7 @@ export {
   getRedirectResult,
   signInWithRedirect,
   deleteUser,
+  sendPasswordResetEmail,
   database,
   ref,
   set,

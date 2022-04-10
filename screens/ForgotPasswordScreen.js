@@ -6,19 +6,32 @@ import {
   KeyboardAvoidingView,
   TextInput,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // Navigation
 import { useNavigation } from "@react-navigation/core";
 
 // Firebase
-import { auth } from "../firebase";
-import { sendPasswordResetEmail } from "firebase/auth";
+import { auth, onAuthStateChanged, sendPasswordResetEmail } from "../firebase";
 
 const ForgotPasswordScreen = () => {
   const navigation = useNavigation();
 
   const [email, setEmail] = useState("");
+
+  let userLoggedIn = false;
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User logged in
+        userLoggedIn = true;
+      } else {
+        // User is logged out
+        userLoggedIn = false;
+      }
+    });
+  }, []);
 
   // Forgot Password
   const forgotPassword = () => {
@@ -45,8 +58,19 @@ const ForgotPasswordScreen = () => {
 
   // Go Back to Settings
   const goBack = () => {
-    console.log("Pressed Go Back");
-    navigation.navigate("HomeTabs", { screen: "Settings" });
+    // If User Logged In
+    if (userLoggedIn) {
+      console.log("Pressed Go Back");
+
+      // Move to Settings Screen
+      navigation.navigate("HomeTabs", { screen: "Settings" });
+    } else {
+      // Otherwise
+      console.log("Pressed Go Back");
+
+      // Move back to Login Screen
+      navigation.navigate("Login");
+    }
   };
 
   return (
