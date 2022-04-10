@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   TextInput,
-  Picker,
+  // Picker,
   Button,
 } from "react-native";
 import React, { useState } from "react";
@@ -18,6 +18,9 @@ import { auth, database, set, ref } from "../firebase";
 
 // DataTimePicker
 import DateTimePicker from "@react-native-community/datetimepicker";
+
+// Picker
+import { Picker } from "@react-native-picker/picker";
 
 // UUID
 import uuid from "react-native-uuid";

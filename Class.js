@@ -31,7 +31,9 @@ export default function Class({ item }) {
         <Text style={styles.class}>{item.classDay}</Text>
         <Text style={styles.class}>{item.classStartTime}</Text>
         <Text style={styles.class}>{item.classEndTime}</Text>
+      </View>
 
+      <View style={styles.buttonBox}>
         <TouchableOpacity onPress={removeClass} style={styles.deleteButton}>
           <Text>Delete</Text>
         </TouchableOpacity>
@@ -51,12 +53,14 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   classTable: {
-    marginBottom: 40,
+    paddingBottom: 20,
+  },
+  buttonBox: {
+    marginBottom: 20,
   },
   class: {
-    flexGrow: 1,
+    flexGrow: 0,
     justifyContent: "space-between",
-
     fontFamily: "monospace",
     fontSize: 16,
     justifyContent: "center",
@@ -65,12 +69,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   deleteButton: {
-    marginTop: 10,
-
     borderRadius: 30,
     borderColor: "black",
+    padding: 12,
     borderWidth: 2,
-    padding: 10,
     backgroundColor: "red",
     textAlign: "center",
     alignItems: "center",
