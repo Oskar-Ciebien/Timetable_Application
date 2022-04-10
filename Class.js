@@ -32,6 +32,20 @@ export default function Class({ item }) {
     console.log("Class has been removed!");
   };
 
+  // Update a Class
+  const updateClass = () => {
+    console.log("Pressed Update Class");
+
+    console.log("Item ID: " + item.id);
+
+    // Class Reference
+    const classRef = ref(database, "classes/" + user.uid + "/" + item.id);
+
+    console.log("Class Reference: " + classRef);
+
+    console.log("Class has been updated!");
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.classTable}>
@@ -45,6 +59,9 @@ export default function Class({ item }) {
       <View style={styles.buttonBox}>
         <TouchableOpacity onPress={removeClass} style={styles.deleteButton}>
           <Text>Delete</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={updateClass} style={styles.updateButton}>
+          <Text>Update</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -83,6 +100,16 @@ const styles = StyleSheet.create({
     padding: 12,
     borderWidth: 2,
     backgroundColor: "red",
+    textAlign: "center",
+    alignItems: "center",
+    marginBottom: 5,
+  },
+  updateButton: {
+    borderRadius: 30,
+    borderColor: "black",
+    padding: 12,
+    borderWidth: 2,
+    backgroundColor: "green",
     textAlign: "center",
     alignItems: "center",
   },
