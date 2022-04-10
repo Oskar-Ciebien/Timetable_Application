@@ -80,7 +80,7 @@ const TimetableScreen = () => {
   // Add To Timetable
   const addTimetable = () => {
     console.log("Pressed Add Timetable");
-    navigation.replace("AddTimetable");
+    navigation.navigate("AddTimetable");
   };
 
   return (
