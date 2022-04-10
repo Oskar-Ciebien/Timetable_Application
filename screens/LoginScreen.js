@@ -20,7 +20,18 @@ import {
   onAuthStateChanged,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  // GoogleAuthProvider,
+  // signInWithPopup,
+  // getRedirectResult,
+  // signInWithRedirect,
 } from "../firebase";
+
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  signInWithRedirect,
+  getRedirectResult,
+} from "firebase/auth";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -46,6 +57,26 @@ const LoginScreen = () => {
         // User is logged out
       }
     });
+
+    // getRedirectResult(auth)
+    //   .then((result) => {
+    //     // This gives you a Google Access Token. You can use it to access Google APIs.
+    //     const credential = GoogleAuthProvider.credentialFromResult(result);
+    //     const token = credential.accessToken;
+
+    //     // The signed-in user info.
+    //     const user = result.user;
+    //   })
+    //   .catch((error) => {
+    //     // Handle Errors here.
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     // The email of the user's account used.
+    //     const email = error.email;
+    //     // The AuthCredential type that was used.
+    //     const credential = GoogleAuthProvider.credentialFromError(error);
+    //     // ...
+    //   });
   }, []);
 
   // Register
@@ -106,6 +137,31 @@ const LoginScreen = () => {
       });
   };
 
+  const provider = new GoogleAuthProvider();
+
+  // Login with Google
+  const loginUserGoogle = async () => {
+    signInWithRedirect(auth, provider);
+
+    //   signInWithPopup(auth, provider)
+    //     .then((result) => {
+    //       // This gives you a Google Access Token. You can use it to access the Google API.
+    //       const credential = GoogleAuthProvider.credentialFromResult(result);
+    //       const token = credential.accessToken;
+    //       // The signed-in user info.
+    //       const user = result.user;
+    //     })
+    //     .catch((error) => {
+    //       // Handle Errors here.
+    //       const errorCode = error.code;
+    //       const errorMessage = error.message;
+    //       // The email of the user's account used.
+    //       const email = error.email;
+    //       // The AuthCredential type that was used.
+    //       const credential = GoogleAuthProvider.credentialFromError(error);
+    //     });
+  };
+
   // forgotPassword
   const forgotPassword = () => {
     console.log("Pressed Forgot Password");
@@ -147,6 +203,14 @@ const LoginScreen = () => {
           <Text style={styles.buttonOutlineText}>Register</Text>
         </TouchableOpacity>
 
+        {/* Login with Google Button */}
+        <TouchableOpacity
+          onPress={loginUserGoogle}
+          style={(styles.button, styles.googleLogin)}
+        >
+          <Text style={styles.buttonOutlineText}>Login with Google</Text>
+        </TouchableOpacity>
+
         {/* Forgot Password Button */}
         <TouchableOpacity onPress={forgotPassword} style={[styles.forgotText]}>
           <Text>Forgot Password?</Text>
@@ -182,6 +246,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   button: {
+    marginTop: 15,
     alignItems: "center",
     backgroundColor: "#2b7eba",
     width: "100%",
@@ -207,5 +272,13 @@ const styles = StyleSheet.create({
     color: "black",
     fontWeight: "600",
     fontSize: 14,
+  },
+  googleLogin: {
+    marginTop: 15,
+    alignItems: "center",
+    backgroundColor: "red",
+    width: "100%",
+    padding: 15,
+    borderRadius: 10,
   },
 });

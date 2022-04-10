@@ -25,16 +25,8 @@ const Tab = createBottomTabNavigator();
 function Tabs() {
   return (
     <Tab.Navigator
-      tabBarOptions={{
-        showLabel: false,
-        style: {
-          // position: "absolute",
-          // marginBottom: 40,
-          // marginLeft: 30,
-          // marginRight: 30,
-          // borderRadius: 15,
-          // height: 200,
-        },
+      screenOptions={{
+        tabBarShowLabel: false,
       }}
     >
       <Tab.Screen

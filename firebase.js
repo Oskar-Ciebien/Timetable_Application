@@ -10,6 +10,11 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  GoogleAuthProvider,
+  reauthenticate,
+  signInWithPopup,
+  getRedirectResult,
+  signInWithRedirect,
 } from "firebase/auth";
 
 // Database
@@ -73,4 +78,9 @@ export {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  GoogleAuthProvider,
+  reauthenticate,
+  signInWithPopup,
+  getRedirectResult,
+  signInWithRedirect,
 };
