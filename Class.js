@@ -4,16 +4,85 @@ import {
   TouchableOpacity,
   View,
   SafeAreaView,
+  KeyboardAvoidingView,
+  TextInput,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 
 // Firebase
-import { auth, database, ref, remove } from "./firebase";
+import { auth, database, ref, remove, update, child } from "./firebase";
 
 // Firebase Display code adapted and modified from: https://github.com/Chensokheng/crud-item-app
 
 export default function Class({ item }) {
   const user = auth.currentUser;
+
+  const [name, setName] = useState("");
+  const [day, setDay] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
+
+  // Update a Class
+  const updateClass = () => {
+    console.log("Pressed Update Class");
+
+    console.log("Class ID: " + item.id);
+
+    // Name
+    if (name != "") {
+      console.log("New Class Name - " + name);
+
+      update(ref(database, "classes/" + user.uid + "/" + item.id), {
+        className: name,
+      });
+
+      setName("");
+    } else {
+      console.log("Name was empty - Nothing has been updated!");
+    }
+
+    // Day
+    if (day != "") {
+      console.log("New Class Day - " + day);
+
+      update(ref(database, "classes/" + user.uid + "/" + item.id), {
+        classDay: day,
+      });
+
+      setDay("");
+    } else {
+      console.log("Day was empty - Nothing has been updated!");
+    }
+
+    // Start Time
+    if (startTime != "") {
+      console.log("New Class Start Time - " + startTime);
+
+      update(ref(database, "classes/" + user.uid + "/" + item.id), {
+        classStartTime: startTime,
+      });
+
+      setStartTime("");
+    } else {
+      console.log("Start Time was empty - Nothing has been updated!");
+    }
+
+    // End Time
+    if (endTime != "") {
+      console.log("New Class End Time - " + endTime);
+
+      // Update In Database
+      update(ref(database, "classes/" + user.uid + "/" + item.id), {
+        classEndTime: endTime,
+      });
+
+      setEndTime("");
+    } else {
+      console.log("End Time was empty - Nothing has been updated!");
+    }
+
+    console.log("Class has been updated!");
+  };
 
   // Remove a Class
   const removeClass = () => {
@@ -32,28 +101,36 @@ export default function Class({ item }) {
     console.log("Class has been removed!");
   };
 
-  // Update a Class
-  const updateClass = () => {
-    console.log("Pressed Update Class");
-
-    console.log("Item ID: " + item.id);
-
-    // Class Reference
-    const classRef = ref(database, "classes/" + user.uid + "/" + item.id);
-
-    console.log("Class Reference: " + classRef);
-
-    console.log("Class has been updated!");
-  };
-
   return (
-    <SafeAreaView style={styles.container}>
+    <KeyboardAvoidingView style={styles.container}>
       <View style={styles.classTable}>
-        {/* <Text style={styles.class}>{item.classId}</Text> */}
         <Text style={styles.class}>{item.className}</Text>
+        <TextInput
+          style={styles.input}
+          value={name}
+          onChangeText={(text) => setName(text)}
+        ></TextInput>
+
         <Text style={styles.class}>{item.classDay}</Text>
+        <TextInput
+          style={styles.input}
+          value={day}
+          onChangeText={(text) => setDay(text)}
+        ></TextInput>
+
         <Text style={styles.class}>{item.classStartTime}</Text>
+        <TextInput
+          style={styles.input}
+          value={startTime}
+          onChangeText={(text) => setStartTime(text)}
+        ></TextInput>
+
         <Text style={styles.class}>{item.classEndTime}</Text>
+        <TextInput
+          style={styles.input}
+          value={endTime}
+          onChangeText={(text) => setEndTime(text)}
+        ></TextInput>
       </View>
 
       <View style={styles.buttonBox}>
@@ -64,7 +141,7 @@ export default function Class({ item }) {
           <Text>Update</Text>
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -112,5 +189,11 @@ const styles = StyleSheet.create({
     backgroundColor: "green",
     textAlign: "center",
     alignItems: "center",
+  },
+  input: {
+    backgroundColor: "lightgray",
+    padding: 3,
+    flexGrow: 0,
+    marginBottom: 10,
   },
 });

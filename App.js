@@ -45,8 +45,8 @@ function Tabs() {
                 source={require("./assets/icons/homepage.png")}
                 resizeMode="contain"
                 style={{
-                  width: 28,
-                  height: 28,
+                  width: 30,
+                  height: 30,
                   tintColor: focused ? "#2b7eba" : "grey",
                 }}
               />
@@ -68,7 +68,7 @@ function Tabs() {
               style={{
                 alignItems: "center",
                 justifyContent: "center",
-                marginTop: 0,
+                marginTop: 3,
               }}
             >
               <Image
@@ -98,7 +98,7 @@ function Tabs() {
               style={{
                 alignItems: "center",
                 justifyContent: "center",
-                marginTop: 0,
+                marginTop: 3,
               }}
             >
               <Image

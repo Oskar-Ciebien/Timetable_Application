@@ -31,6 +31,7 @@ import {
   orderByChild,
   remove,
   removeValue,
+  update,
 } from "firebase/database";
 
 // Firebase configuration
@@ -87,4 +88,5 @@ export {
   orderByChild,
   remove,
   removeValue,
+  update,
 };
