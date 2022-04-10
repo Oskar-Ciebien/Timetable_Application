@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   backButton: {
     marginTop: 50,
     fontSize: 22,
-    backgroundColor: "green",
+    backgroundColor: "darkgreen",
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 10,
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     marginTop: 50,
     fontSize: 22,
-    backgroundColor: "red",
+    backgroundColor: "darkred",
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 10,
